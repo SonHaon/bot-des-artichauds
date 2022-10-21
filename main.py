@@ -1,4 +1,5 @@
 import asyncio
+from pathlib import Path
 import discord
 from discord.ext import commands
 from discord import app_commands
@@ -20,8 +21,10 @@ from users import get_user
 from channels import get_channel
 
 from Cogs_sommaire import *
-load_dotenv()
+print(os.path.join(os.path.dirname(__file__), '..\\.env'))
+load_dotenv(os.path.join(os.path.dirname(__file__), '..\\.env'))
 TOKEN = os.getenv("token")
+print(TOKEN)
 guild = discord.Object(id=900046546656182322)
 
 
