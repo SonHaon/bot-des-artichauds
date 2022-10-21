@@ -21,7 +21,8 @@ from users import get_user
 from channels import get_channel
 
 from Cogs_sommaire import *
-load_dotenv(os.path.join(os.path.dirname(__file__), '..\\token\\.env'))
+load_dotenv(os.path.join(os.path.dirname(os.path.realpath("main.py")), '../token/.env'))
+print(os.path.realpath("main.py"))
 TOKEN = os.getenv("token_botarchauds")
 guild = discord.Object(id=900046546656182322)
 
