@@ -68,7 +68,10 @@ def zero(moment):
         return moment
 
 def date_now():
-    date = datetime.now().replace(hour=datetime.now().hour+2)
+    try:
+        date = datetime.now().replace(hour=datetime.now().hour+1)
+    except:
+        date = datetime.now().replace(hour=datetime.now().hour-23,day=datetime.now().day+1)
     day = zero(date.day)
     month = zero(date.month)
     year = date.year
