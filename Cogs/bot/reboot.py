@@ -25,5 +25,6 @@ class reboot(commands.Cog):
         webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
         webhook = webhook[0]
         await webhook.send(f"{date_now()} j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        await self.bot.change_presence(status=discord.Status.offline)
         os.system("sudo reboot")
         
