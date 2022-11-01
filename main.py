@@ -66,8 +66,8 @@ class aclient(commands.Bot):
         await self.add_cog(help(bot=self),guild=guild)
         await self.add_cog(help_id(bot=self),guild=guild)
         # commandes de bot
-        await self.add_cog(eteindre(bot=self),guild=guild)
         await self.add_cog(change_presence(bot=self),guild=guild)
+        await self.add_cog(reboot(bot=self),guild=guild)
         # event
         await self.add_cog(timeout(bot=self),guild=guild)
         await self.add_cog(member_leave(bot=self),guild=guild)

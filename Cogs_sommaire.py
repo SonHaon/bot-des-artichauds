@@ -20,6 +20,7 @@ from Cogs.help.help_id import help_id
 from Cogs.bot.eteindre import eteindre
 from Cogs.bot.rallume import rallume
 from Cogs.bot.change_presence import change_presence
+from Cogs.bot.reboot import reboot
 
 from Cogs.event.on_timeout import timeout
 from Cogs.event.member_join import member_join
