@@ -4,6 +4,7 @@ from PIL import Image,ImageDraw
 import numpy as np
 from io import BytesIO
 from roles import get_role
+from channels import get_channel
 import aiohttp
 async def recup_message_by_id(ctx:discord.Interaction, id:int) -> discord.Message:
     for channel in ctx.guild.text_channels:
@@ -62,6 +63,9 @@ async def has_webhook(channel:discord.TextChannel,user:discord.Member):
         return webhooks[0]
 
 def date_now():
-    date = datetime.now()
-    return f"[<t:{round(date.timestamp())}:f>] **|**"
+    return f"<t:{round(datetime.now().timestamp())}:f> **||**"
 
+async def log(bot,user:discord.User,message:str):
+    webhook = await bot.channel.logs.webhooks()
+    webhook = webhook[0]
+    await webhook.send(f"{date_now()} {message}",username=user.display_name,avatar_url=user.display_avatar.url)

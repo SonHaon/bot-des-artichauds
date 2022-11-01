@@ -17,8 +17,6 @@ from Cogs.moderation.set_auto_role import set_auto_role
 from Cogs.help.help import help
 from Cogs.help.help_id import help_id
 
-from Cogs.bot.eteindre import eteindre
-from Cogs.bot.rallume import rallume
 from Cogs.bot.change_presence import change_presence
 from Cogs.bot.reboot import reboot
 

@@ -6,7 +6,7 @@ from discord.ui import *
 import random 
 
 from ..couleurs import couleur 
-from ..fonction import date_now
+from ..fonction import log
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -26,7 +26,5 @@ class de(commands.Cog):
         await asyncio.sleep(1)
         await interaction.edit_original_response(content=f"je lance le dé...\n**{num}** :game_die:!")
         logger.info(f"'{interaction.user.display_name}' a lancé un 'dé' dans le channel '{interaction.channel.name}', le résultat est '{num}'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai fait **/dé** dans {interaction.channel.mention}, le résultat est **__{num}__**",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai fait **/dé** dans {interaction.channel.mention}, le résultat est **__{num}__**")
 

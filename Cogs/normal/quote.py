@@ -6,7 +6,7 @@ from discord.ui import *
 import random 
 
 from ..couleurs import couleur
-from ..fonction import recup_message_by_id,date_now
+from ..fonction import recup_message_by_id,log
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -29,15 +29,13 @@ class quote(commands.Cog):
     async def quote(self,interaction:discord.Interaction,message_id:str):
         await interaction.response.defer()
         message:discord.Message = await recup_message_by_id(interaction, int(message_id))
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
         if message==None:
             await interaction.edit_original_response(content="Le message n'existe pas ou l'id est incorrect")
             logger.info(f"'{interaction.user.display_name}' a voulu créer une 'citation' dans le channel '{interaction.channel.name}' mais ça n'a pas fonctionné")
-            await webhook.send(f"{date_now()} j'ai voulu créer une **citation** dans {interaction.channel.mention} mais ça n'a pas fonctionné",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+            log(self.bot,interaction.user,f"j'ai voulu créer une **citation** dans {interaction.channel.mention} mais ça n'a pas fonctionné")
             return
         embed = discord.Embed(description= message.content, color= couleur.gris)
         embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar.url)
         await interaction.edit_original_response(embed=embed)
         logger.info(f"'{interaction.user.display_name}' a créé une 'citation' du message de '{message.author.display_name}' dans le channel '{interaction.channel.name}' {message.jump_url}")
-        await webhook.send(f"{date_now()} j'ai créé une **citation** du message de '{message.author.mention}' dans {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai créé une **citation** du message de '{message.author.mention}' dans {interaction.channel.mention}")

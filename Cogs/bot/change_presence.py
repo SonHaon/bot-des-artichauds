@@ -8,7 +8,7 @@ import random
 import logging
 logger = logging.getLogger('discord.artichauds')
 from ..couleurs import couleur 
-from ..fonction import create_webhook,date_now
+from ..fonction import log
 
 
 status=[discord.Status.online,discord.Status.offline,discord.Status.idle,discord.Status.dnd]
@@ -33,6 +33,4 @@ class change_presence(commands.Cog):
             await self.bot.change_presence(status=status[statu],activity=discord.Activity(type=discord.ActivityType.watching,name="/help"))
         await interaction.response.send_message(f"le statu du bot est maintenant *{status1[statu]}*",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a changé le status de '{self.bot.user.display_name}' en {status1[statu]} depuis le channel '{interaction.channel.name}'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai **changé le status** de {self.bot.user.mention} en __**{status1[statu]}**__ depuis {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        await log(self.bot,interaction.user,f"j'ai **changé le status** de {self.bot.user.mention} en __**{status1[statu]}**__ depuis {interaction.channel.mention}")

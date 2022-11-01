@@ -6,7 +6,7 @@ from discord.ui import *
 import random 
 
 from ..couleurs import couleur 
-from ..fonction import date_now
+from ..fonction import log
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -24,6 +24,4 @@ class clear(commands.Cog):
         await interaction.channel.purge(limit=nb)
         await interaction.edit_original_response(content=f"j'ai supprimé *{nb}* messages")
         logger.info(f"'{interaction.user.display_name}' a supprimé '{nb}' messages dans le channel '{interaction.channel.name}' grace à la commande '/clear'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai supprimé **{nb}** dans {interaction.channel.mention} grace à la commande **/clear**",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai supprimé **{nb}** dans {interaction.channel.mention} grace à la commande **/clear**")

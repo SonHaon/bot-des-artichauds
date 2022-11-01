@@ -7,7 +7,7 @@ import random
 
 from ..couleurs import couleur 
 from ..checks import check
-from ..fonction import date_now
+from ..fonction import log
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -27,6 +27,4 @@ class say(commands.Cog):
         await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention}")
         await channel.send(content=content,file=file)
         logger.info(f"'{interaction.user.display_name}' a fait envoyé '{content}' à {self.bot.user.display_name} dans le channel '{channel.name}'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai fait envoyé `{content}` à {self.bot.user.mention} dans le channel {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai fait envoyé `{content}` à {self.bot.user.mention} dans le channel {interaction.channel.mention}")

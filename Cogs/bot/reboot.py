@@ -11,7 +11,7 @@ logger = logging.getLogger('discord.artichauds')
 
 from ..couleurs import couleur 
 from ..checks import check
-from ..fonction import date_now
+from ..fonction import log
 
 class reboot(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
@@ -23,8 +23,6 @@ class reboot(commands.Cog):
         await self.bot.change_presence(status=discord.Status.offline)
         await interaction.response.send_message("le bot va redémarrer",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a redémarrer '{self.bot.user.display_name}' depuis le channel '{interaction.channel.name}'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}")
         os.system("sudo reboot")
         

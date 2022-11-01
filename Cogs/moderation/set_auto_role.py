@@ -6,7 +6,7 @@ from discord.ui import *
 import random 
 
 from ..couleurs import couleur 
-from ..fonction import message_auto_role,date_now
+from ..fonction import message_auto_role,log
 from ..components import boutons_auto_role
 
 import logging 
@@ -24,6 +24,4 @@ class set_auto_role(commands.Cog):
         await interaction.channel.send(embed=embed,view=boutons_auto_role(interaction.guild))
         await interaction.response.send_message("l'auto role à bien été créer",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a créé un auto-role temporaire dans le channel '{interaction.channel.name}' avec la commande '/set_auto_role'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai créé un auto-role temporaire dans {interaction.channel.mention} avec la commande **/set_auto_role**",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai créé un auto-role temporaire dans {interaction.channel.mention} avec la commande **/set_auto_role**")

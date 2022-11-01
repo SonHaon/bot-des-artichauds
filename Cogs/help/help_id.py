@@ -10,7 +10,7 @@ import logging
 logger = logging.getLogger('discord.artichauds') 
 
 from ..couleurs import couleur
-from ..fonction import date_now
+from ..fonction import log
 from .embed_help import embeds_id
 from .select_help import View_id
 
@@ -24,6 +24,4 @@ class help_id(commands.Cog):
     async def help_id(self,interaction:discord.Interaction,plateforme:str):
         await interaction.response.send_message(embeds=[embeds_id[int(plateforme)][0]],view=View_id(int(plateforme)))
         logger.info(f"'{interaction.user.display_name}' a éxecuter la commandes '/help_id' dans le channel '{interaction.channel.name}'")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai fait **/help_id** dans {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai fait **/help_id** dans {interaction.channel.mention}")

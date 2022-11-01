@@ -7,7 +7,7 @@ import random
 
 from ..couleurs import couleur 
 from ..checks import check
-from ..fonction import recup_message_by_id,date_now
+from ..fonction import recup_message_by_id,log
 import logging 
 logger = logging.getLogger('discord.artichauds') 
 
@@ -42,9 +42,7 @@ class bouton_sondage_ouinon(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base,embed_votes])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **OUI** au sondage OUI/NON: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **OUI** au sondage OUI/NON: \n{interaction.message.jump_url}")
 
     @discord.ui.button(label="NON",emoji="❌",style=ButtonStyle.red,row=0,custom_id="non")
     async def non(self,interaction:discord.Interaction,bouton:discord.ui.Button):
@@ -71,9 +69,7 @@ class bouton_sondage_ouinon(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base,embed_votes])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **NON** au sondage OUI/NON: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **NON** au sondage OUI/NON: \n{interaction.message.jump_url}")
 
 class bouton_sondage_ouinon_anonyme(discord.ui.View):
     def __init__(self):
@@ -99,9 +95,7 @@ class bouton_sondage_ouinon_anonyme(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **OUI** au sondage OUI/NON: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **OUI** au sondage OUI/NON: \n{interaction.message.jump_url}")
 
     @discord.ui.button(label="NON",emoji="❌",style=ButtonStyle.red,row=0,custom_id="non_anonyme")
     async def non(self,interaction:discord.Interaction,bouton:discord.ui.Button):
@@ -121,9 +115,7 @@ class bouton_sondage_ouinon_anonyme(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **NON** au sondage OUI/NON: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **NON** au sondage OUI/NON: \n{interaction.message.jump_url}")
 
 
 class bouton_sondage_perso(discord.ui.View):
@@ -160,9 +152,7 @@ class bouton_sondage_perso(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base,embed_votes])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}")
 
     @discord.ui.button(label="non",emoji="❌",style=ButtonStyle.blurple,row=0)
     async def non(self,interaction:discord.Interaction,bouton:discord.ui.Button):
@@ -189,9 +179,7 @@ class bouton_sondage_perso(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base,embed_votes])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}")
 
 
 class bouton_sondage_perso_anonyme(discord.ui.View):
@@ -222,9 +210,7 @@ class bouton_sondage_perso_anonyme(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}")
 
     @discord.ui.button(label="non",emoji="❌",style=ButtonStyle.blurple,row=0,custom_id="rep2_anonyme")
     async def non(self,interaction:discord.Interaction,bouton:discord.ui.Button):
@@ -244,9 +230,7 @@ class bouton_sondage_perso_anonyme(discord.ui.View):
         await interaction.message.edit(embeds=[embed_base])
         await interaction.edit_original_response(content="votre réponse a été enregistré")
         self.attend = False
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai répondu **{bouton.label}** au sondage {self.label1}/{self.label2}: \n{interaction.message.jump_url}")
 
 
 
@@ -272,9 +256,7 @@ class sondage(commands.GroupCog, name="sondage"):
             await interaction.response.send_message("le sondage est lancé",ephemeral=True)
             message = await interaction.channel.send(embeds=[embed_base,embed_votes],view=bouton_sondage_ouinon())
             logger.info(f"'{interaction.user.display_name}' a lancé un sondage oui/non dans '{interaction.channel.name}'")
-            webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-            webhook = webhook[0]
-            await webhook.send(f"{date_now()} j'ai lancé un sondage oui/non dans {interaction.channel.mention} : {message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+            log(self.bot,interaction.user,f"j'ai lancé un sondage oui/non dans {interaction.channel.mention} : {message.jump_url}")
         else:
             embed_base = discord.Embed(title=title,description=question,color=couleur.bleu)
             embed_base.add_field(name="__**OUI**__",value=f"**{0}** jardiniers ont voté __oui__",inline=True)
@@ -283,9 +265,7 @@ class sondage(commands.GroupCog, name="sondage"):
             await interaction.response.send_message("le sondage est lancé",ephemeral=True)
             message = await interaction.channel.send(embeds=[embed_base],view=bouton_sondage_ouinon_anonyme())
             logger.info(f"'{interaction.user.display_name}' a lancé un sondage anonyme oui/non dans '{interaction.channel.name}'")
-            webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-            webhook = webhook[0]
-            await webhook.send(f"{date_now()} j'ai lancé un sondage anonyme oui/non dans {interaction.channel.mention} : {message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+            log(self.bot,interaction.user,f"j'ai lancé un sondage anonyme oui/non dans {interaction.channel.mention} : {message.jump_url}")
 
 
     @app_commands.command(name="fin",description="met fin à un sondage")
@@ -413,9 +393,7 @@ class sondage(commands.GroupCog, name="sondage"):
             await sondage.edit(view=view,embeds=[embed_base,embed_résultat])
             await interaction.edit_original_response(content="Le sondage est terminé")
         
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai lancé un sondage anonyme oui/non dans {interaction.channel.mention} : {sondage.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai mis fin au sondage dans {interaction.channel.mention} : {sondage.jump_url}")
 
 
 
@@ -461,9 +439,7 @@ class sondage(commands.GroupCog, name="sondage"):
             await interaction.response.send_message("le sondage est lancé",ephemeral=True)
             message = await interaction.channel.send(embeds=[embed_base,embed_votes],view=view)
             logger.info(f"'{interaction.user.display_name}' a lancé un sondage '{choix1}/{choix2}' dans '{interaction.channel.name}'")
-            webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-            webhook = webhook[0]
-            await webhook.send(f"{date_now()} j'ai lancé un sondage {choix1}/{choix2} dans {interaction.channel.mention} : {message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+            log(self.bot,interaction.user,f"j'ai lancé un sondage {choix1}/{choix2} dans {interaction.channel.mention} : {message.jump_url}")
         else:
             embed_base = discord.Embed(title=titre,description=f"{question}\n\nCe sondage est anonyme.",color=couleur.bleu)
             embed_base.add_field(name=f"__**{choix1} {emoji1}**__",value=f"**{0}** jardiniers ont voté __{choix1} {emoji1}__",inline=True)
@@ -483,6 +459,4 @@ class sondage(commands.GroupCog, name="sondage"):
             await interaction.response.send_message("le sondage est lancé",ephemeral=True)
             await interaction.channel.send(embeds=[embed_base],view=view)
             logger.info(f"'{interaction.user.display_name}' a lancé un sondage anonyme '{choix1}/{choix2}' dans '{interaction.channel.name}'")
-            webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-            webhook = webhook[0]
-            await webhook.send(f"{date_now()} j'ai lancé un sondage anonyme {choix1}/{choix2} dans {interaction.channel.mention} : {message.jump_url}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+            log(self.bot,interaction.user,f"j'ai lancé un sondage anonyme {choix1}/{choix2} dans {interaction.channel.mention} : {message.jump_url}")

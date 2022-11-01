@@ -6,7 +6,7 @@ from discord.ui import *
 import random 
 
 from ..couleurs import couleur 
-from ..fonction import date_now
+from ..fonction import log
 from ..checks import check
 
 class fake_message(commands.Cog): 
@@ -21,6 +21,4 @@ class fake_message(commands.Cog):
         await webhook.send(message,username=user.display_name,avatar_url=user.display_avatar.url)
         await webhook.delete()
 
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} j'ai fait envoyé `{message}` de la part de {user.mention} dans {interaction.channel.mention}",username=interaction.user.display_name,avatar_url=interaction.user.display_avatar.url)
+        log(self.bot,interaction.user,f"j'ai fait envoyé `{message}` de la part de {user.mention} dans {interaction.channel.mention}")

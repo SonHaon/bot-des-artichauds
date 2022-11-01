@@ -10,7 +10,7 @@ import random
 import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
-from ..fonction import date_now,circular_crowp
+from ..fonction import circular_crowp,log
 
 class member_join(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
@@ -54,6 +54,4 @@ Au plaisir de te voir participer a notre ferme ☺️""",
         await asyncio.sleep(2)
         os.remove("bot-des-artichauds/image test.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
-        webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
-        webhook = webhook[0]
-        await webhook.send(f"{date_now()} {member.mention} a rejoind le serveur des artichauds",username=member.display_name,avatar_url=member.display_avatar.url)
+        log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
