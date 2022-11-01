@@ -32,8 +32,7 @@ class member_join(commands.Cog):
         draw = ImageDraw.Draw(img)
         font=ImageFont.truetype("bot-des-artichauds/Quicksand_Bold.otf",50)
         draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\ndans le jardin des\n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
-        img.paste(user_pp, box=(22,22))
-        draw.rounded_rectangle((20,20,280,280),150,outline=couleur().gris,width=5)
+        img.paste(user_pp, box=(22,22),mask=user_pp)
         img.save("bot-des-artichauds/image test.png")
         embed = discord.Embed(
             title="Ho ! Un nouveau jardinier !",
