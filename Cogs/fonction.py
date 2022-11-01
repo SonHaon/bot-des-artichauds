@@ -1,4 +1,5 @@
 from datetime import datetime
+from dateutil import tz
 import discord
 from PIL import Image,ImageDraw
 import numpy as np
@@ -61,21 +62,7 @@ async def has_webhook(channel:discord.TextChannel,user:discord.Member):
         await webhooks[0].edit(name=user.display_name,avatar=avatar)
         return webhooks[0]
 
-def zero(moment):
-    if len(str(moment)) == 1:
-        return f"0{moment}"
-    else:
-        return moment
-
 def date_now():
-    try:
-        date = datetime.now().replace(hour=datetime.now().hour+1)
-    except:
-        date = datetime.now().replace(hour=datetime.now().hour-23,day=datetime.now().day+1)
-    day = zero(date.day)
-    month = zero(date.month)
-    year = date.year
-    hour = zero(date.hour)
-    minute = zero(date.minute)
-    second = zero(date.second)
-    return f"[`{day}/{month}/{year} {hour}h{minute}:{second}`] **|**"
+    date = datetime.now()
+    return f"[<t:{date.timestamp}:f>] **|**"
+
