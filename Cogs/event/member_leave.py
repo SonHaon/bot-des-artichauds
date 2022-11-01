@@ -17,7 +17,7 @@ class member_leave(commands.Cog):
     async def member_leave(self,member:discord.Member):
         channel = member.guild.get_channel(1007259536991715468)
         await channel.send(f"{member.mention} a quitté le serveur")
-        logger.info(f"'{member.display_name}' a rejoind le serveur")
+        logger.info(f"'{member.display_name}' a quitté le serveur")
         webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
         webhook = webhook[0]
         await webhook.send(f"{date_now()} {member.mention} a quitté le serveur des artichauds",username=member.display_name,avatar_url=member.display_avatar.url)

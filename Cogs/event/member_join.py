@@ -28,13 +28,13 @@ class member_join(commands.Cog):
         user_pp_url = BytesIO(await user_pp_url.read())
         user_pp = Image.open(user_pp_url)
         user_pp = circular_crowp(user_pp)
-        img = Image.open("joinimg.png")
+        img = Image.open("bot-des-artichauds/joinimg.png")
         draw = ImageDraw.Draw(img)
-        font=ImageFont.truetype("Quicksand_Bold.otf",50)
+        font=ImageFont.truetype("bot-des-artichauds/Quicksand_Bold.otf",50)
         draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\ndans le jardin des\n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
         img.paste(user_pp, box=(22,22))
         draw.rounded_rectangle((20,20,280,280),150,outline=couleur().gris,width=5)
-        img.save("image test.png")
+        img.save("bot-des-artichauds/image test.png")
         embed = discord.Embed(
             title="Ho ! Un nouveau jardinier !",
             description=f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {member.name}  🎉!
@@ -48,12 +48,12 @@ Bonne visite, si tu as des questions n’hésite pas.
 Au plaisir de te voir participer a notre ferme ☺️""",
             color=couleur().bleu)
         channel_image=self.bot.get_channel(1009137943077724240)
-        message = await channel_image.send(file=discord.File("image test.png"))
+        message = await channel_image.send(file=discord.File("bot-des-artichauds/image test.png"))
         image_url = message.attachments[0].url
         embed.set_image(url=image_url)
         await channel.send(member.mention,embed=embed)
         await asyncio.sleep(2)
-        os.remove("image test.png")
+        os.remove("bot-des-artichauds/image test.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
         webhook:discord.Webhook = await self.bot.channel.logs.webhooks()
         webhook = webhook[0]
