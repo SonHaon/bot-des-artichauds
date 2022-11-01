@@ -63,5 +63,5 @@ async def has_webhook(channel:discord.TextChannel,user:discord.Member):
 
 def date_now():
     date = datetime.now()
-    return f"[<t:{date.timestamp}:f>] **|**"
+    return f"[<t:{date.timestamp()}:f>] **|**"
 
