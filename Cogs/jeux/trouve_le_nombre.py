@@ -96,13 +96,13 @@ class trouve_le_nombre(commands.Cog):
             embed.add_field(name="résultat :",value="\n".join(résultat),inline=False)
             embed.add_field(name="nombre d'éssais :",value = f"{loop-tentative} essais")
             logger.info(f"'{interaction.user.display_name}' a gagné sa partie de 'trouve_le_nombre' dans le channel '{interaction.channel.name}', le nombre était '{nombre}'")
-            log(self.bot,interaction.user,f"j'ai gagné ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
+            await log(self.bot,interaction.user,f"j'ai gagné ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
         elif not(win):
             embed = discord.Embed(title=embed.title,description=embed.description,color=couleur.full_rouge)
             résultat.append(str(f"**{loop+1})** Dommage vous n'avez pas trouvé le nombre que j'avais choisi.\nLe nombre était : **__{nombre}__**"))
             embed.add_field(name="nombre proposé :", value=", ".join(nombre_proposé),inline=False)
             embed.add_field(name="résultat :",value="\n".join(résultat),inline=False)
             logger.info(f"'{interaction.user.display_name}' a perdu sa partie de 'trouve_le_nombre' dans le channel '{interaction.channel.name}', le nombre était '{nombre}'")
-            log(self.bot,interaction.user,f"j'ai perdu ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
+            await log(self.bot,interaction.user,f"j'ai perdu ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
         await interaction.edit_original_response(embed=embed)
 

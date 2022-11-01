@@ -27,4 +27,4 @@ class say(commands.Cog):
         await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention}")
         await channel.send(content=content,file=file)
         logger.info(f"'{interaction.user.display_name}' a fait envoyé '{content}' à {self.bot.user.display_name} dans le channel '{channel.name}'")
-        log(self.bot,interaction.user,f"j'ai fait envoyé `{content}` à {self.bot.user.mention} dans le channel {interaction.channel.mention}")
+        await log(self.bot,interaction.user,f"j'ai fait envoyé `{content}` à {self.bot.user.mention} dans le channel {interaction.channel.mention}")

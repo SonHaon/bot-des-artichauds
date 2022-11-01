@@ -18,4 +18,4 @@ class member_leave(commands.Cog):
         channel = member.guild.get_channel(1007259536991715468)
         await channel.send(f"{member.mention} a quitté le serveur")
         logger.info(f"'{member.display_name}' a quitté le serveur")
-        log(self.bot,member,f"{member.mention} a quitté le serveur des artichauds")
+        await log(self.bot,member,f"{member.mention} a quitté le serveur des artichauds")

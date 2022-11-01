@@ -19,4 +19,4 @@ class timeout(commands.Cog):
             if member_after.id == self.bot.member.Mixame.id:
                 await member_after.timeout(None)
                 logger.info(f"'Mixame' a été unmute")
-                log(self.bot,member_after,f"j'ai unmute {member_after.mention}")
+                await log(self.bot,member_after,f"j'ai unmute {member_after.mention}")

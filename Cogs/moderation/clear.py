@@ -24,4 +24,4 @@ class clear(commands.Cog):
         await interaction.channel.purge(limit=nb)
         await interaction.edit_original_response(content=f"j'ai supprimé *{nb}* messages")
         logger.info(f"'{interaction.user.display_name}' a supprimé '{nb}' messages dans le channel '{interaction.channel.name}' grace à la commande '/clear'")
-        log(self.bot,interaction.user,f"j'ai supprimé **{nb}** dans {interaction.channel.mention} grace à la commande **/clear**")
+        await log(self.bot,interaction.user,f"j'ai supprimé **{nb}** dans {interaction.channel.mention} grace à la commande **/clear**")

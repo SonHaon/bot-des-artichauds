@@ -23,6 +23,6 @@ class reboot(commands.Cog):
         await self.bot.change_presence(status=discord.Status.offline)
         await interaction.response.send_message("le bot va redémarrer",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a redémarrer '{self.bot.user.display_name}' depuis le channel '{interaction.channel.name}'")
-        log(self.bot,interaction.user,f"j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}")
+        await log(self.bot,interaction.user,f"j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}")
         os.system("sudo reboot")
         

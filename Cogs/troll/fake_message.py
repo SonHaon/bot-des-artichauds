@@ -21,4 +21,4 @@ class fake_message(commands.Cog):
         await webhook.send(message,username=user.display_name,avatar_url=user.display_avatar.url)
         await webhook.delete()
 
-        log(self.bot,interaction.user,f"j'ai fait envoyé `{message}` de la part de {user.mention} dans {interaction.channel.mention}")
+        await log(self.bot,interaction.user,f"j'ai fait envoyé `{message}` de la part de {user.mention} dans {interaction.channel.mention}")

@@ -24,8 +24,8 @@ class help(commands.Cog):
         if a_role(interaction.user,self.bot.roles.chef):
             await interaction.response.send_message(embed=embed_default_admin,view=View_tout_admin(default_catergory=None))
             logger.info(f"'{interaction.user.display_name}' a éxecuter la commandes '/help'(mode admin) dans le channel '{interaction.channel.name}'")
-            log(self.bot,interaction.user,f"j'ai fait **/help** (en mode admin) dans {interaction.channel.mention}")
+            await log(self.bot,interaction.user,f"j'ai fait **/help** (en mode admin) dans {interaction.channel.mention}")
         else:
             await interaction.response.send_message(embed=embed_default,view=View_tout(default_catergory=None))
             logger.info(f"'{interaction.user.display_name}' a éxecuter la commandes '/help' dans le channel '{interaction.channel.name}'")
-            log(self.bot,interaction.user,f"j'ai fait **/help** dans {interaction.channel.mention}")
+            await log(self.bot,interaction.user,f"j'ai fait **/help** dans {interaction.channel.mention}")

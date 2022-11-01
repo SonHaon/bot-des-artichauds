@@ -22,4 +22,4 @@ class ping(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         await interaction.edit_original_response(content="pong")
         logger.info(f"'{interaction.user.display_name}' à éxecuté la commande '/ping' dans le channel '{interaction.channel.name}'")
-        log(self.bot,interaction.user,f"j'ai fait **/ping** dans {interaction.channel.mention}")
+        await log(self.bot,interaction.user,f"j'ai fait **/ping** dans {interaction.channel.mention}")

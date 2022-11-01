@@ -26,9 +26,9 @@ class add_reaction(commands.Cog):
         if message==None:
             await interaction.edit_original_response(content="Le message n'existe pas ou l'id est incorrect")
             logger.info(f"'{interaction.user.display_name}' a voulu faire 'ajouter une reaction' de la part de {self.bot.user.name} dans le channel '{interaction.channel.name}' mais ça n'a pas fonctionné")
-            log(self.bot,interaction.user,f"j'ai voulu faire **ajouter une reaction** de la part de {self.bot.user.mention} dans le channel {interaction.channel.mention} mais ça n'a pas fonctionné")
+            await log(self.bot,interaction.user,f"j'ai voulu faire **ajouter une reaction** de la part de {self.bot.user.mention} dans le channel {interaction.channel.mention} mais ça n'a pas fonctionné")
             return
         await message.add_reaction(emoji)
         await interaction.edit_original_response(content=f"l'émoji {emoji} à bien été ajouté au message :\n{message.jump_url}")
         logger.info(f"'{interaction.user.display_name}' a ajouté une réaction de la part de {self.bot.user.display_name} depuis le channel '{interaction.channel.name}' sur le message {message.jump_url}")
-        log(self.bot,interaction.user,f"j'ai **ajouté la reaction {emoji}** de la part de {self.bot.user.mention} depuis le channel {interaction.channel.mention} sur le message {message.jump_url}")
+        await log(self.bot,interaction.user,f"j'ai **ajouté la reaction {emoji}** de la part de {self.bot.user.mention} depuis le channel {interaction.channel.mention} sur le message {message.jump_url}")

@@ -26,5 +26,5 @@ class de(commands.Cog):
         await asyncio.sleep(1)
         await interaction.edit_original_response(content=f"je lance le dé...\n**{num}** :game_die:!")
         logger.info(f"'{interaction.user.display_name}' a lancé un 'dé' dans le channel '{interaction.channel.name}', le résultat est '{num}'")
-        log(self.bot,interaction.user,f"j'ai fait **/dé** dans {interaction.channel.mention}, le résultat est **__{num}__**")
+        await log(self.bot,interaction.user,f"j'ai fait **/dé** dans {interaction.channel.mention}, le résultat est **__{num}__**")
 

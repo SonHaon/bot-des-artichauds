@@ -32,10 +32,10 @@ class quote(commands.Cog):
         if message==None:
             await interaction.edit_original_response(content="Le message n'existe pas ou l'id est incorrect")
             logger.info(f"'{interaction.user.display_name}' a voulu créer une 'citation' dans le channel '{interaction.channel.name}' mais ça n'a pas fonctionné")
-            log(self.bot,interaction.user,f"j'ai voulu créer une **citation** dans {interaction.channel.mention} mais ça n'a pas fonctionné")
+            await log(self.bot,interaction.user,f"j'ai voulu créer une **citation** dans {interaction.channel.mention} mais ça n'a pas fonctionné")
             return
         embed = discord.Embed(description= message.content, color= couleur.gris)
         embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar.url)
         await interaction.edit_original_response(embed=embed)
         logger.info(f"'{interaction.user.display_name}' a créé une 'citation' du message de '{message.author.display_name}' dans le channel '{interaction.channel.name}' {message.jump_url}")
-        log(self.bot,interaction.user,f"j'ai créé une **citation** du message de '{message.author.mention}' dans {interaction.channel.mention}")
+        await log(self.bot,interaction.user,f"j'ai créé une **citation** du message de '{message.author.mention}' dans {interaction.channel.mention}")

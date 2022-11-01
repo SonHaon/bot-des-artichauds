@@ -54,4 +54,4 @@ Au plaisir de te voir participer a notre ferme ☺️""",
         await asyncio.sleep(2)
         os.remove("bot-des-artichauds/image test.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
-        log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
+        await log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
