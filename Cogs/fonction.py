@@ -1,5 +1,4 @@
 from datetime import datetime
-from dateutil import tz
 import discord
 from PIL import Image,ImageDraw
 import numpy as np
