@@ -55,7 +55,7 @@ class bouton_trad(discord.ui.View):
     def interaction_check(self, interaction: discord.Interaction, /) -> bool:
         if interaction.user == interaction.message.mentions[0]:
             return True
-        role=self.bot.role
+        role=self.bot.roles
         if role.chef in interaction.user.roles:
             return True
         return False
