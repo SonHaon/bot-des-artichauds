@@ -11,7 +11,6 @@ import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
 from ..fonction import circular_crowp,log,image_bienvenue_fr,image_bienvenue_en
-from ...roles import get_role
 
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
@@ -56,7 +55,7 @@ class bouton_trad(discord.ui.View):
     def interaction_check(self, interaction: discord.Interaction, /) -> bool:
         if interaction.user == interaction.message.mentions[0]:
             return True
-        role=get_role(interaction.guild)
+        role=self.bot.role
         if role.chef in interaction.user.roles:
             return True
         return False
