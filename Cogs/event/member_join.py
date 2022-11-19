@@ -47,9 +47,7 @@ Looking forward to see you participate in our farm ☺️""",
 
 
 class bouton_trad(discord.ui.View):
-    def __init__(self,url_fr,url_en):
-        self.url_fr = url_fr
-        self.url_en = url_en
+    def __init__(self,):
         super().__init__(timeout=None)
     
     @discord.ui.button(
