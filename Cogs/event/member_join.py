@@ -48,7 +48,8 @@ Looking forward to see you participate in our farm ☺️""",
 
 
 class bouton_trad(discord.ui.View):
-    def __init__(self,):
+    def __init__(self,bot):
+        self.bot = bot
         super().__init__(timeout=None)
     
     @discord.ui.button(
@@ -102,7 +103,7 @@ class member_join(commands.Cog):
             channel = member.guild.get_channel(1007578769722179657)
         image_url = await image_bienvenue_fr(self.bot,member)
         embed = await embed_fr(self.bot,member)
-        await channel.send(member.mention,embed=embed,view=bouton_trad())
+        await channel.send(member.mention,embed=embed,view=bouton_trad(self.bot))
         await asyncio.sleep(2)
         os.remove("bot-des-artichauds/image_fr.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
