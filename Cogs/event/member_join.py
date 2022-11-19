@@ -52,7 +52,7 @@ class bouton_trad(discord.ui.View):
         self.bot = bot
         super().__init__(timeout=None)
 
-    def interaction_check(self, interaction: discord.Interaction, /) -> bool:
+    async def interaction_check(self, interaction: discord.Interaction, /) -> bool:
         if interaction.user == interaction.message.mentions[0]:
             return True
         role=self.bot.roles
