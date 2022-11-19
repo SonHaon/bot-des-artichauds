@@ -26,6 +26,7 @@ Bonne visite, si tu as des questions n’hésite pas.
 Au plaisir de te voir participer a notre ferme ☺️""",
             color=couleur().bleu)
     embed.set_image(url= await image_bienvenue_fr(bot,member))
+    return embed
 
 async def embed_en(bot,member:discord.Member):
     embed = discord.Embed(
@@ -40,7 +41,7 @@ Enjoy your visit, if you have any questions don't hesitate.
 
 Looking forward to see you participate in our farm ☺️""",
             color=couleur().bleu)
-    embed.set_image(url= await image_bienvenue_en(bot,member))
+    return embed.set_image(url= await image_bienvenue_en(bot,member))
 
 
 
