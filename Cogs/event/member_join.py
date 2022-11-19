@@ -12,6 +12,60 @@ logger = logging.getLogger('discord.artichauds')
 from ..couleurs import couleur 
 from ..fonction import circular_crowp,log
 
+class bouton_trad(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=None)
+    
+    @discord.ui.button(
+        style=ButtonStyle.blurple,
+        label="english",
+        custom_id="EN",
+        row=0
+    )
+    async def EN(self,interaction:discord.Interaction,button:discord.ui.Button):
+        embed = interaction.message.embeds[0]
+        embed.description = f"""🎉 We welcome a new <@&948895100346437676> {interaction.message.mentions[0].name} 🎉!
+
+You can give us a little presentation in <#900048923534688286> 
+Read the rules and integrate the roles that may interest you <#900068827595956234> 
+If you need help to make your ~~10k~~ 5k clan points, the detail ||of the wonderful kaseiya 😏|| pinned in <#900384566802530314> might be able to help you.
+
+Enjoy your visit, if you have any questions don't hesitate.
+
+Looking forward to see you participate in our farm ☺️"""
+        self.children[1].disabled = False
+        self.children[0].disabled = True
+        await interaction.response.edit_message(embed=embed,view=self)
+
+    @discord.ui.button(
+        style=ButtonStyle.blurple,
+        label="français",
+        custom_id="FR",
+        row=0
+    )
+    async def FR(self,interaction:discord.Interaction,button:discord.ui.Button):
+        embed = interaction.message.embeds[0]
+        embed.description = f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {interaction.message.mentions[0].name}  🎉!
+
+Tu peu nous faire une petite presentation dans <#900048923534688286> 
+Lire le règlement et intégrer les roles qui peuvent t’intéresser <#900068827595956234> 
+Si besoin d’aide pour faire tes ~~10k~~ 5k points de clan, le détail ||du merveilleux kaseiya 😏|| epinglé dans <#900384566802530314> pourra peu être t’aider.
+
+Bonne visite, si tu as des questions n’hésite pas.
+
+Au plaisir de te voir participer a notre ferme ☺️"""
+        self.children[1].disabled = True
+        self.children[0].disabled = False
+        await interaction.response.edit_message(embed=embed,view=self)
+
+
+
+
+
+
+
+
+
 class member_join(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
@@ -50,7 +104,7 @@ Au plaisir de te voir participer a notre ferme ☺️""",
         message = await channel_image.send(file=discord.File("bot-des-artichauds/image test.png"))
         image_url = message.attachments[0].url
         embed.set_image(url=image_url)
-        await channel.send(member.mention,embed=embed)
+        await channel.send(member.mention,embed=embed,view=bouton_trad())
         await asyncio.sleep(2)
         os.remove("bot-des-artichauds/image test.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")

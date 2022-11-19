@@ -16,7 +16,7 @@ class trad_en(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot
         self.ctx_menu = app_commands.ContextMenu(
-            name="translate into english",
+            name="translate to english",
             callback=self.trad_en
         )
         self.bot.tree.add_command(self.ctx_menu)
