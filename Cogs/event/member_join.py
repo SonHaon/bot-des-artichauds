@@ -11,6 +11,7 @@ import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
 from ..fonction import circular_crowp,log,image_bienvenue_fr,image_bienvenue_en
+from ...roles import get_role
 
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
@@ -51,35 +52,27 @@ class bouton_trad(discord.ui.View):
     def __init__(self,bot):
         self.bot = bot
         super().__init__(timeout=None)
+
+    def interaction_check(self, interaction: discord.Interaction, /) -> bool:
+        if interaction.user == interaction.message.mentions[0]:
+            return True
+        role=get_role(interaction.guild)
+        if role.chef in interaction.user.roles:
+            return True
+        return False
     
     @discord.ui.button(
         style=ButtonStyle.blurple,
-        label="english",
-        custom_id="EN",
+        label="show english",
         row=0
     )
     async def EN(self,interaction:discord.Interaction,button:discord.ui.Button):
         embed = await embed_en(self.bot,interaction.message.mentions[0])
-        self.children[1].disabled = False
-        self.children[0].disabled = True
-        await interaction.response.edit_message(embed=embed,view=self)
+        await interaction.response.edit_message(embeds=[interaction.message.embeds[0],embed],view=None)
         await asyncio.sleep(2)
         os.remove("bot-des-artichauds/image_en.png")
 
-    @discord.ui.button(
-        style=ButtonStyle.blurple,
-        label="français",
-        custom_id="FR",
-        disabled=True,
-        row=0
-    )
-    async def FR(self,interaction:discord.Interaction,button:discord.ui.Button):
-        embed = await embed_fr(self.bot,interaction.message.mentions[0])
-        self.children[1].disabled = True
-        self.children[0].disabled = False
-        await interaction.response.edit_message(embed=embed,view=self)
-        await asyncio.sleep(2)
-        os.remove("bot-des-artichauds/image_fr.png")
+
 
 
 
