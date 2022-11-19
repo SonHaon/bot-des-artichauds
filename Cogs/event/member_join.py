@@ -10,10 +10,46 @@ import random
 import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
-from ..fonction import circular_crowp,log
+from ..fonction import circular_crowp,log,image_bienvenue_fr,image_bienvenue_en
+
+async def embed_fr(bot,member:discord.Member):
+    embed = discord.Embed(
+            title="Ho ! Un nouveau jardinier !",
+            description=f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {member.name}  🎉!
+
+Tu peu nous faire une petite presentation dans <#900048923534688286> 
+Lire le règlement et intégrer les roles qui peuvent t’intéresser <#900068827595956234> 
+Si besoin d’aide pour faire tes ~~10k~~ 5k points de clan, le détail ||du merveilleux kaseiya 😏|| epinglé dans <#900384566802530314> pourra peu être t’aider.
+
+Bonne visite, si tu as des questions n’hésite pas.
+
+Au plaisir de te voir participer a notre ferme ☺️""",
+            color=couleur().bleu)
+    embed.set_image(url= await image_bienvenue_fr(bot,member))
+
+async def embed_en(bot,member:discord.Member):
+    embed = discord.Embed(
+            title="Ho ! A new gardener !",
+            description=f"""🎉 We welcome a new <@&948895100346437676> {member.name} 🎉!
+
+You can give us a little presentation in <#900048923534688286> 
+Read the rules and integrate the roles that may interest you <#900068827595956234> 
+If you need help to make your ~~10k~~ 5k clan points, the detail ||of the wonderful kaseiya 😏|| pinned in <#900384566802530314> might be able to help you.
+
+Enjoy your visit, if you have any questions don't hesitate.
+
+Looking forward to see you participate in our farm ☺️""",
+            color=couleur().bleu)
+    embed.set_image(url= await image_bienvenue_en(bot,member))
+
+
+
+
 
 class bouton_trad(discord.ui.View):
-    def __init__(self):
+    def __init__(self,url_fr,url_en):
+        self.url_fr = url_fr
+        self.url_en = url_en
         super().__init__(timeout=None)
     
     @discord.ui.button(
@@ -23,40 +59,27 @@ class bouton_trad(discord.ui.View):
         row=0
     )
     async def EN(self,interaction:discord.Interaction,button:discord.ui.Button):
-        embed = interaction.message.embeds[0]
-        embed.description = f"""🎉 We welcome a new <@&948895100346437676> {interaction.message.mentions[0].name} 🎉!
-
-You can give us a little presentation in <#900048923534688286> 
-Read the rules and integrate the roles that may interest you <#900068827595956234> 
-If you need help to make your ~~10k~~ 5k clan points, the detail ||of the wonderful kaseiya 😏|| pinned in <#900384566802530314> might be able to help you.
-
-Enjoy your visit, if you have any questions don't hesitate.
-
-Looking forward to see you participate in our farm ☺️"""
+        embed = await embed_en(self.bot,interaction.message.mentions[0])
         self.children[1].disabled = False
         self.children[0].disabled = True
         await interaction.response.edit_message(embed=embed,view=self)
+        await asyncio.sleep(2)
+        os.remove("bot-des-artichauds/image_en.png")
 
     @discord.ui.button(
         style=ButtonStyle.blurple,
         label="français",
         custom_id="FR",
+        disabled=True,
         row=0
     )
     async def FR(self,interaction:discord.Interaction,button:discord.ui.Button):
-        embed = interaction.message.embeds[0]
-        embed.description = f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {interaction.message.mentions[0].name}  🎉!
-
-Tu peu nous faire une petite presentation dans <#900048923534688286> 
-Lire le règlement et intégrer les roles qui peuvent t’intéresser <#900068827595956234> 
-Si besoin d’aide pour faire tes ~~10k~~ 5k points de clan, le détail ||du merveilleux kaseiya 😏|| epinglé dans <#900384566802530314> pourra peu être t’aider.
-
-Bonne visite, si tu as des questions n’hésite pas.
-
-Au plaisir de te voir participer a notre ferme ☺️"""
+        embed = await embed_fr(self.bot,interaction.message.mentions[0])
         self.children[1].disabled = True
         self.children[0].disabled = False
         await interaction.response.edit_message(embed=embed,view=self)
+        await asyncio.sleep(2)
+        os.remove("bot-des-artichauds/image_fr.png")
 
 
 
@@ -78,34 +101,10 @@ class member_join(commands.Cog):
             return
         elif member.id == 931236217465471066:
             channel = member.guild.get_channel(1007578769722179657)
-        user_pp_url = member.display_avatar.replace(size=256)
-        user_pp_url = BytesIO(await user_pp_url.read())
-        user_pp = Image.open(user_pp_url)
-        user_pp = circular_crowp(user_pp)
-        img = Image.open("bot-des-artichauds/joinimg.png")
-        draw = ImageDraw.Draw(img)
-        font=ImageFont.truetype("bot-des-artichauds/Quicksand_Bold.otf",50)
-        draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\ndans le jardin des\n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
-        img.paste(user_pp, box=(22,22),mask=user_pp)
-        img.save("bot-des-artichauds/image test.png")
-        embed = discord.Embed(
-            title="Ho ! Un nouveau jardinier !",
-            description=f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {member.name}  🎉!
-
-Tu peu nous faire une petite presentation dans <#900048923534688286> 
-Lire le règlement et intégrer les roles qui peuvent t’intéresser <#900068827595956234> 
-Si besoin d’aide pour faire tes ~~10k~~ 5k points de clan, le détail ||du merveilleux kaseiya 😏|| epinglé dans <#900384566802530314> pourra peu être t’aider.
-
-Bonne visite, si tu as des questions n’hésite pas.
-
-Au plaisir de te voir participer a notre ferme ☺️""",
-            color=couleur().bleu)
-        channel_image=self.bot.get_channel(1009137943077724240)
-        message = await channel_image.send(file=discord.File("bot-des-artichauds/image test.png"))
-        image_url = message.attachments[0].url
-        embed.set_image(url=image_url)
+        image_url = image_bienvenue_fr(self.bot,member)
+        embed = embed_fr(self.bot,member)
         await channel.send(member.mention,embed=embed,view=bouton_trad())
         await asyncio.sleep(2)
-        os.remove("bot-des-artichauds/image test.png")
+        os.remove("bot-des-artichauds/image_fr.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
         await log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
