@@ -88,6 +88,7 @@ class aclient(commands.Bot):
         self.add_view(view=boutons_auto_role(guild=self.artichauds),message_id=1012375814983131178)
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="/help"))
         logger.info(f"{self.user.name} est allumé")
+        await log(self,self.user,"j'ai démarrer")
 
 SonHaon_Bot = aclient()
 tree = SonHaon_Bot.tree
