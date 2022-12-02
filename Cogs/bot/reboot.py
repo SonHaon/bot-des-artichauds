@@ -24,5 +24,5 @@ class reboot(commands.Cog):
         await interaction.response.send_message("le bot va redémarrer",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a redémarrer '{self.bot.user.display_name}' depuis le channel '{interaction.channel.name}'")
         await log(self.bot,interaction.user,f"j'ai **redémarrer** {self.bot.user.mention} depuis {interaction.channel.mention}")
-        os.system("/bin/sh /home/sonhaon/Desktop/reboot.sh")
+        os.system("/home/sonhaon/Desktop/reboot.sh")
         
