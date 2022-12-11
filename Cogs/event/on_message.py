@@ -21,10 +21,10 @@ class on_message(commands.Cog):
         if message.content.startswith("EN "):
             content = translator.translate_text(message.content[3:],target_lang="EN-US")
             webhook = await has_webhook(message.channel,message.author)
-            await webhook.send(content=f"{message.content}\n\n{content}")
+            await webhook.send(content=f"{message.content[3:]}\n\n{content}")
             logger.info(f"{message.author.display_name} a traduit un message en anglais dans {message.channel.name}")
         if message.content.startswith("FR "):
             content = translator.translate_text(message.content[3:],target_lang="FR")
             webhook = await has_webhook(message.channel,message.author)
-            await webhook.send(content=f"{message.content}\n\n{content}")
+            await webhook.send(content=f"{message.content[3:]}\n\n{content}")
             logger.info(f"{message.author.display_name} a traduit un message en francais dans {message.channel.name}")
