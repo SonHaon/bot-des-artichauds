@@ -24,4 +24,4 @@ class trad_fr(commands.Cog):
     @app_commands.guilds(900046546656182322)
     async def trad_fr(self,interaction:discord.Interaction,message:discord.Message) -> None:
         content = translator.translate_text(message.content,target_lang="FR")
-        await interaction.response.send_message(content=content,ephemeral=True)
+        await interaction.response.send_message(content=f"{message.content}\n\n{content}",ephemeral=True)
