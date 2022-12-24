@@ -40,7 +40,7 @@ class bouton_validation(discord.ui.View):
         row=0
     )
     async def not_reboot(self,interaction:discord.Interaction,button:discord.ui.Button):
-        await interaction.response.edit_message("Le raspberry n'a pas redémarré",view=None)
+        await interaction.response.edit_message(content="Le raspberry n'a pas redémarré",view=None)
 
 
 
