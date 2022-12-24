@@ -68,6 +68,7 @@ class aclient(commands.Bot):
         # commandes de bot
         await self.add_cog(change_presence(bot=self),guild=guild)
         await self.add_cog(reboot(bot=self),guild=guild)
+        await self.add_cog(raspberry_reboot(bot=self),guild=guild)
         # event
         await self.add_cog(timeout(bot=self),guild=guild)
         await self.add_cog(member_leave(bot=self),guild=guild)
