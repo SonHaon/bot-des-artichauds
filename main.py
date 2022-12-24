@@ -74,9 +74,11 @@ class aclient(commands.Bot):
         await self.add_cog(member_leave(bot=self),guild=guild)
         await self.add_cog(member_join(bot=self),guild=guild)
         await self.add_cog(on_message(bot=self),guild=guild)
-        # commande de traduction
+        # commandes de traduction
         await self.add_cog(trad_fr(bot=self),guild=guild)
         await self.add_cog(trad_en(bot=self),guild=guild)
+        # commandes de minecraft
+        await self.add_cog(minecraft_commands(bot=self),guild=guild)
 
         await self.tree.sync(guild=guild)
 
