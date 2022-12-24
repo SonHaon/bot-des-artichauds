@@ -27,7 +27,7 @@ class bouton_validation(discord.ui.View):
     )
     async def reboot(self,interaction:discord.Interaction,button:discord.ui.Button):
         await self.bot.change_presence(status=discord.Status.offline)
-        await interaction.response.send_message("le raspberry va redémarrer",ephemeral=True)
+        await interaction.response.edit_message(content="le raspberry va redémarrer",view=None)
         logger.info(f"'{interaction.user.display_name}' a redémarrer 'le raspberry' depuis le channel '{interaction.channel.name}'")
         await log(self.bot,interaction.user,f"j'ai **redémarrer** le raspberry depuis {interaction.channel.mention}")
         os.system("sudo reboot")
