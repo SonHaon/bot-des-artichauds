@@ -81,6 +81,8 @@ class aclient(commands.Bot):
         await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
         await self.tree.sync(guild=guild)
+        await self.tree.sync(guild=discord.Object(id=916617095876337664))
+
 
     async def on_ready(self):
         await self.wait_until_ready()
