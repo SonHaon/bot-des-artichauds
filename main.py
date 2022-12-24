@@ -78,7 +78,7 @@ class aclient(commands.Bot):
         await self.add_cog(trad_fr(bot=self),guild=guild)
         await self.add_cog(trad_en(bot=self),guild=guild)
         # commandes de minecraft
-        await self.add_cog(minecraft_commands(bot=self),guilds=[discord.Object(id=916617095876337664),guild])
+        await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
         await self.tree.sync(guild=guild)
 
