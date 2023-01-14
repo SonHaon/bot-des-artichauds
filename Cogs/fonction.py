@@ -39,13 +39,13 @@ def message_auto_role(ctx:discord.Interaction):
     > **{len(get_role(ctx.guild).infini.members)}** jardiniers possède le role {get_role(ctx.guild).infini.mention}
     > **{len(get_role(ctx.guild).alors.members)}** jardiniers possède le role {get_role(ctx.guild).alors.mention}"""
 
-async def a_sync(url):
-    async with aiohttp.ClientSession() as ses:
-        async with ses.get(url) as r:
-            if r.status in range(200, 299):
-                img = BytesIO(await r.read())
-                b = img.getvalue()
-                return b
+# async def a_sync(url):
+#     async with aiohttp.ClientSession() as ses:
+#         async with ses.get(url) as r:
+#             if r.status in range(200, 299):
+#                 img = BytesIO(await r.read())
+#                 b = img.getvalue()
+#                 return b
 
 async def create_webhook(channel:discord.TextChannel,user:discord.Member):
     avatar=await user.avatar.read()
