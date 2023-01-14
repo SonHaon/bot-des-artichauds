@@ -39,17 +39,16 @@ def message_auto_role(ctx:discord.Interaction):
     > **{len(get_role(ctx.guild).infini.members)}** jardiniers possède le role {get_role(ctx.guild).infini.mention}
     > **{len(get_role(ctx.guild).alors.members)}** jardiniers possède le role {get_role(ctx.guild).alors.mention}"""
 
-async def a_sync(url):
-    async with aiohttp.ClientSession() as ses:
-        async with ses.get(url) as r:
-            if r.status in range(200, 299):
-                img = BytesIO(await r.read())
-                b = img.getvalue()
-                return b
+# async def a_sync(url):
+#     async with aiohttp.ClientSession() as ses:
+#         async with ses.get(url) as r:
+#             if r.status in range(200, 299):
+#                 img = BytesIO(await r.read())
+#                 b = img.getvalue()
+#                 return b
 
 async def create_webhook(channel:discord.TextChannel,user:discord.Member):
-    avatar=await a_sync(user.display_avatar.url)
-    webhook = await channel.create_webhook(name=user.display_name,avatar=avatar)
+    webhook = await channel.create_webhook(name=user.display_name,avatar=user.display_avatar.read())
     return webhook
 
 async def has_webhook(channel:discord.TextChannel,user:discord.Member):
@@ -58,8 +57,7 @@ async def has_webhook(channel:discord.TextChannel,user:discord.Member):
         webhook = await create_webhook(channel,user)
         return webhook
     else:
-        avatar=await a_sync(user.display_avatar.url)
-        await webhooks[0].edit(name=user.display_name,avatar=avatar)
+        await webhooks[0].edit(name=user.display_name,avatar=user.display_avatar.read())
         return webhooks[0]
 
 def date_now():
