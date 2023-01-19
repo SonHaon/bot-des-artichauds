@@ -15,7 +15,7 @@ class spam(commands.Cog):
     @app_commands.command(name="spam",description="spam quelqu'un")
     @check.is_chef()
     async def spam(self,interaction:discord.Interaction,user:discord.User,message:str,delai:int,nombre_fois:int,delete:bool):
-        await interaction.response.send_message("spam lancé")
+        await interaction.response.send_message("spam lancé",ephemeral=True)
         if delete:
             delete = 0.001
             delai = 1
