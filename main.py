@@ -40,7 +40,7 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
-class aclient(commands.Bot):
+class bot(commands.Bot):
     def __init__(self):
         intents = discord.Intents.all()
         super().__init__(intents = intents,command_prefix="%µ¨£%£µ%",help_command=None)
@@ -96,7 +96,7 @@ class aclient(commands.Bot):
         logger.info(f"{self.user.name} est allumé")
         await log(self,self.user,"j'ai démarrer")
 
-SonHaon_Bot = aclient()
+SonHaon_Bot = bot()
 tree = SonHaon_Bot.tree
 
 @tree.error
@@ -126,6 +126,6 @@ async def on_app_command_error(interaction:discord.Interaction,error):
 
 
 
-
+# caractère invisible : (⁠)
 
 SonHaon_Bot.run(TOKEN)
