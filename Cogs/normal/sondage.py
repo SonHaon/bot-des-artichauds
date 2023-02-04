@@ -254,7 +254,7 @@ class sondage(commands.GroupCog, name="sondage"):
             embed_votes = discord.Embed(title="Votes",description=None,color=couleur.bleu)
             embed_votes.set_footer(icon_url=interaction.guild.icon.url,text=interaction.guild.name)
             await interaction.response.send_message("le sondage est lancé",ephemeral=True)
-            message = await interaction.channel.send(embeds=[embed_base,embed_votes],view=bouton_sondage_ouinon())
+            message = await interaction.channel.send(embeds=[embed_base,embed_votes],view=bouton_sondage_ouinon(self.bot))
             logger.info(f"'{interaction.user.display_name}' a lancé un sondage oui/non dans '{interaction.channel.name}'")
             await log(self.bot,interaction.user,f"j'ai lancé un sondage oui/non dans {interaction.channel.mention} : {message.jump_url}")
         else:
