@@ -20,6 +20,6 @@ class ping(commands.Cog):
     @app_commands.command(name="ping",description="verifie si le bot marche")
     async def ping(self,interaction:discord.Interaction):
         await interaction.response.defer(ephemeral=True)
-        await interaction.edit_original_response(content=f"le ping du bot est de {round(self.bot.latency/1000)}ms")
+        await interaction.edit_original_response(content=f"le ping du bot est de {round(self.bot.latency*1000)}ms")
         logger.info(f"'{interaction.user.display_name}' à éxecuté la commande '/ping' dans le channel '{interaction.channel.name}'")
         await log(self.bot,interaction.user,f"j'ai fait **/ping** dans {interaction.channel.mention}")
