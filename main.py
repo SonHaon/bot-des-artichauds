@@ -47,7 +47,7 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # commandes normal
-        await self.add_cog(ping(bot=self),guild=guild)
+        await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
         await self.add_cog(sondage(bot=self),guild=guild)
         # commandes de jeu
@@ -82,7 +82,7 @@ class bot(commands.Bot):
         await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
         await self.tree.sync(guild=guild)
-        await self.tree.sync(guild=discord.Object(id=916617095876337664))
+        await self.tree.sync()
 
 
     async def on_ready(self):
