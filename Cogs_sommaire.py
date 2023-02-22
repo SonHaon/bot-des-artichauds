@@ -29,5 +29,6 @@ from Cogs.event.on_message import on_message
 from Cogs.traduction.trad_fr import trad_fr
 from Cogs.traduction.trad_en import trad_en
 from Cogs.traduction.trad_de import trad_de
+from Cogs.traduction.trad_sp import trad_sp
 
 from Cogs.minecraft.minecraft_command import minecraft_commands
