@@ -10,7 +10,7 @@ import random
 import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
-from ..fonction import circular_crowp,log,image_bienvenue_fr,image_bienvenue_en
+from ..fonction import log,image_bienvenue_fr,image_bienvenue_en
 
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
@@ -69,7 +69,7 @@ class bouton_trad(discord.ui.View):
         embed = await embed_en(self.bot,interaction.message.mentions[0])
         await interaction.response.edit_message(embeds=[interaction.message.embeds[0],embed],view=None)
         await asyncio.sleep(2)
-        os.remove("bot-des-artichauds/image_en.png")
+        os.remove("/home/sonhaon/bot-des-artichauds/image_en.png")
 
 
 
