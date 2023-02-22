@@ -36,3 +36,9 @@ class on_message(commands.Cog):
             await message.delete()
             await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
             logger.info(f"{message.author.display_name} a traduit un message en allemand dans {message.channel.name}")
+        if message.content.startswith("SP "):
+            content = translator.translate_text(message.content[3:],target_lang="ES")
+            webhook = await has_webhook(message.channel,message.author)
+            await message.delete()
+            await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
+            logger.info(f"{message.author.display_name} a traduit un message en espagnol dans {message.channel.name}")
