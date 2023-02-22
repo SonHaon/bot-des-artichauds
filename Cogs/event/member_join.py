@@ -97,6 +97,6 @@ class member_join(commands.Cog):
         embed = await embed_fr(self.bot,member)
         await channel.send(member.mention,embed=embed,view=bouton_trad(self.bot))
         await asyncio.sleep(2)
-        os.remove("bot-des-artichauds/image_fr.png")
+        os.remove("/home/sonhaon/bot-des-artichauds/image_fr.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
         await log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
