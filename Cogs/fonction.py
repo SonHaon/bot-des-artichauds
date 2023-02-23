@@ -48,7 +48,7 @@ def message_auto_role(ctx:discord.Interaction):
 #                 return b
 
 async def create_webhook(channel:discord.TextChannel,user:discord.Member):
-    avatar=await user.avatar.read()
+    avatar=await user.display_avatar.read()
     webhook = await channel.create_webhook(name=user.display_name,avatar=avatar)
     return webhook
 
@@ -58,7 +58,7 @@ async def has_webhook(channel:discord.TextChannel,user:discord.Member):
         webhook = await create_webhook(channel,user)
         return webhook
     else:
-        avatar=await user.avatar.read()
+        avatar=await user.display_avatar.read()
         await webhooks[0].edit(name=user.display_name,avatar=avatar)
         return webhooks[0]
 
