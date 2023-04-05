@@ -111,7 +111,7 @@ class boutons_auto_role(discord.ui.View):
         label="android",
         emoji="🤖",
         custom_id="android",
-        row=1
+        row=0
     )
     async def android(self,interaction:discord.Interaction,button:discord.ui.Button):
         role=self.roles.android
@@ -129,31 +129,10 @@ class boutons_auto_role(discord.ui.View):
 
     @discord.ui.button(
         style=ButtonStyle.blurple,
-        label="infini",
-        emoji="📊",
-        custom_id="infini",
-        row=1
-    )
-    async def infini(self,interaction:discord.Interaction,button:discord.ui.Button):
-        role=self.roles.infini
-        user=interaction.user
-        if not a_role(user,role):
-            await user.add_roles(role,reason="À réagi avec l'auto-role")
-            await interaction.response.send_message(f"Le role {role.mention} vous à bien été ajouté",ephemeral=True)
-        else:
-            await user.remove_roles(role)
-            await interaction.response.send_message(f"Le role {role.mention} vous à bien été enlevé",ephemeral=True)
-        message = await interaction.channel.fetch_message(interaction.message.id)
-        embed = message.embeds[0]
-        embed.set_field_at(0,name=embed.fields[0].name,value=message_auto_role(interaction))
-        await message.edit(embed=embed,view=self)
-
-    @discord.ui.button(
-        style=ButtonStyle.blurple,
         label="alors?",
         emoji="❓",
         custom_id="alors?",
-        row=1
+        row=0
     )
     async def alors(self,interaction:discord.Interaction,button:discord.ui.Button):
         role=self.roles.alors

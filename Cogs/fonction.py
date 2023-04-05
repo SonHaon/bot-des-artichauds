@@ -36,7 +36,6 @@ def message_auto_role(ctx:discord.Interaction):
     > **{len(get_role(ctx.guild).duel.members)}** jardiniers possède le role {get_role(ctx.guild).duel.mention}
     > **{len(get_role(ctx.guild).ios.members)}** jardiniers possède le role {get_role(ctx.guild).ios.mention}
     > **{len(get_role(ctx.guild).android.members)}** jardiniers possède le role {get_role(ctx.guild).android.mention}
-    > **{len(get_role(ctx.guild).infini.members)}** jardiniers possède le role {get_role(ctx.guild).infini.mention}
     > **{len(get_role(ctx.guild).alors.members)}** jardiniers possède le role {get_role(ctx.guild).alors.mention}"""
 
 # async def a_sync(url):
