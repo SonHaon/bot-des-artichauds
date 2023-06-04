@@ -79,6 +79,7 @@ class bot(commands.Bot):
         await self.add_cog(trad_en(bot=self),guild=guild)
         await self.add_cog(trad_de(bot=self),guild=guild)
         await self.add_cog(trad_sp(bot=self),guild=guild)
+        await self.add_cog(langue(bot=self),guild=guild)
         # commandes de minecraft
         await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
@@ -92,7 +93,7 @@ class bot(commands.Bot):
         self.member = get_user(bot=self)
         self.channel = get_channel(bot=self)
         self.artichauds = self.get_guild(900046546656182322)
-        self.add_view(view=boutons_auto_role(guild=self.artichauds),message_id=1012375814983131178)
+        self.add_view(view=boutons_auto_role(guild=self.artichauds),message_id=1093050764173267016)
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="/help"))
         logger.info(f"{self.user.name} est allumé")
         await log(self,self.user,"j'ai démarrer")
