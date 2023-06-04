@@ -20,4 +20,4 @@ class langue(commands.Cog):
     @app_commands.command(name="langue",description="affiche toutes les langues disponible / shows all available languages")
     async def langue(self,interaction:discord.Interaction):
         await interaction.response.defer(ephemeral=True)
-        await interaction.edit_original_response(content=f"Les langues disponible sont:\nFrancais / French (FR)\nAnglais / English (EN)\nEspagnol / Español (SP)\nAllemand / Deutsch")
+        await interaction.edit_original_response(content=f"Les langues disponible sont:\nFrancais / French (FR)\nAnglais / English (EN)\nEspagnol / Español (SP)\nAllemand / Deutsch (DE)")
