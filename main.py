@@ -102,7 +102,7 @@ class bot(commands.Bot):
         # commandes de minecraft
         await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
-        await self.tree.sync(guild=guild)
+        #await self.tree.sync(guild=guild)
         await self.tree.sync()
 
 
