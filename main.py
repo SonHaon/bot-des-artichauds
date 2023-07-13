@@ -53,7 +53,7 @@ class MyTranslator(Translator):
                 return "testtesttest"
             return None
         if locale is Locale.french and context.location is TranslationContextLocation.command_description:
-            if context.data.name == "verifie si le bot marche":
+            if context.data.name == "ping":
                 return translator.translate_text(string.message,target_lang="EN-US")
             return None
         return None
