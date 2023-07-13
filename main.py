@@ -49,7 +49,8 @@ class MyTranslator(Translator):
         context: TranslationContext
         ):
         if locale is Locale.american_english and context.location is TranslationContextLocation.command_name:
-            return translator.translate_text(string.message,target_lang="EN-US")
+            name = translator.translate_text(string.message,target_lang="EN-US")
+            return name
         return None
     
 
