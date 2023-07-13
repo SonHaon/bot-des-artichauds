@@ -11,6 +11,7 @@ from io import BytesIO
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 import logging
 import logging.handlers
+import deepl
 
 from Cogs.checks import check
 from Cogs.fonction import *
@@ -24,7 +25,7 @@ from Cogs_sommaire import *
 load_dotenv(".env")
 TOKEN = os.getenv("TOKEN")
 guild = discord.Object(id=900046546656182322)
-
+translator = deepl.Translator("b2f44de3-fa00-9598-36ba-effea8104e2b:fx") 
 
 handler = logging.handlers.RotatingFileHandler(
     filename='artichauds.log',
@@ -39,6 +40,26 @@ formatter = logging.Formatter('[{asctime}] {name}: {message}', dt_fmt, style='{'
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
+class MyCustomTranslator(app_commands.Translator):
+    async def load(self):
+        pass
+    # this gets called when the translator first gets loaded!
+    async def unload(self):
+        pass
+    # in case you need to switch translators, this gets called when being removed
+    async def translate(self, string: app_commands.locale_str, locale: discord.Locale, context: app_commands.TranslationContext):
+        """
+        `locale_str` is the string that is requesting to be translated
+        `locale` is the target language to translate to
+        `context` is the origin of this string, eg TranslationContext.command_name, etc
+        This function must return a string (that's been translated), or `None` to signal no available translation available, and will default to the original.
+        """
+        message_str = translator.translate_text(string.message,target_lang=locale)
+        return message_str
+    
+
+
+
 
 class bot(commands.Bot):
     def __init__(self):
@@ -46,6 +67,8 @@ class bot(commands.Bot):
         super().__init__(intents = intents,command_prefix="%µ¨£%£µ%",help_command=None)
         
     async def setup_hook(self):
+        # set le traducteur
+        await self.tree.set_translator(MyCustomTranslator())
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
