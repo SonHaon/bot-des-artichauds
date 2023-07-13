@@ -20,7 +20,7 @@ class minecraft_commands(commands.Cog):
     @app_commands.command(name="minecraft_commands",description="execute une commande dans la console minecraft")
     @check.is_SonHaon()
     async def minecraft_commands(self,interaction:discord.Interaction,commande:str):
-        await interaction.response.send_message(f"la commande `{commande}` à bien été éxecuté",ephemeral=True)
+        await interaction.response.send_message(f"la commande `{commande}` à bien été éxecuté\n{os.popen(f'echo "{commande}" > /run/minecraft.stdin').read()}",ephemeral=True)
         logger.info(f"'{interaction.user.display_name}' a éxecuté la commande '{commande}' sur le serveur minecraft depuis le channel '{interaction.channel.name}'")
-        os.system(f'echo "{commande}" > /run/minecraft.stdin')
+        
         
