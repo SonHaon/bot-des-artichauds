@@ -40,25 +40,7 @@ formatter = logging.Formatter('[{asctime}] {name}: {message}', dt_fmt, style='{'
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-class MyCustomTranslator(app_commands.Translator):
-    async def load(self):
-        pass
-    # this gets called when the translator first gets loaded!
-    async def unload(self):
-        pass
-    # in case you need to switch translators, this gets called when being removed
-    async def translate(self, string: app_commands.locale_str, locale: discord.Locale, context: app_commands.TranslationContext):
-        """
-        `locale_str` is the string that is requesting to be translated
-        `locale` is the target language to translate to
-        `context` is the origin of this string, eg TranslationContext.command_name, etc
-        This function must return a string (that's been translated), or `None` to signal no available translation available, and will default to the original.
-        """
-        try:
-            message_str = translator.translate_text(string.message,target_lang=locale)
-            return message_str
-        except:
-            return string.message
+
     
 
 
@@ -71,7 +53,6 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # set le traducteur
-        await self.tree.set_translator(MyCustomTranslator())
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
