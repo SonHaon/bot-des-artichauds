@@ -65,7 +65,7 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # set le traducteur
-        await self.tree.set_translator(MyTranslator)
+        await self.tree.set_translator(MyTranslator())
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
