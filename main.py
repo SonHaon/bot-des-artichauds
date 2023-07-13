@@ -54,8 +54,11 @@ class MyCustomTranslator(app_commands.Translator):
         `context` is the origin of this string, eg TranslationContext.command_name, etc
         This function must return a string (that's been translated), or `None` to signal no available translation available, and will default to the original.
         """
-        message_str = translator.translate_text(string.message,target_lang=locale)
-        return message_str
+        try:
+            message_str = translator.translate_text(string.message,target_lang=locale)
+            return message_str
+        except:
+            return string.message
     
 
 
