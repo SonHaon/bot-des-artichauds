@@ -41,17 +41,6 @@ formatter = logging.Formatter('[{asctime}] {name}: {message}', dt_fmt, style='{'
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-
-def traduction(string,locale,context):
-    if locale is Locale.french and context.location is TranslationContextLocation.command_name:
-        if context.data.name == "ping":
-            return "testtesttest"
-        return None
-    if locale is Locale.french and context.location is TranslationContextLocation.command_description:
-        if string.message == "verifie si le bot marche":
-            return translator.translate_text(string.message,target_lang="EN-US")
-        return None
-
 class MyTranslator(Translator):
     async def translate(
         self,
@@ -59,7 +48,15 @@ class MyTranslator(Translator):
         locale: Locale,
         context: TranslationContext
         ):
-        return traduction(string,locale,context)
+        if locale is Locale.french and context.location is TranslationContextLocation.command_name:
+            if context.data.name == "ping":
+                return "testtesttest"
+            return None
+        #if locale is Locale.french and context.location is TranslationContextLocation.command_description:
+        #    if string.message == "verifie si le bot marche":
+        #        return translator.translate_text(string.message,target_lang="EN-US")
+        #    return None
+        return None
     
 
 
