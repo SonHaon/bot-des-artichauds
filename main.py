@@ -48,10 +48,8 @@ class MyTranslator(Translator):
         locale: Locale,
         context: TranslationContext
         ):
-        if locale is Locale.french and context.location is TranslationContextLocation.command_name:
-            if context.data.name == "ping":
-                return "testtesttest"
-            return None
+        if locale is Locale.american_english and context.location is TranslationContextLocation.command_name:
+            return translator.translate_text("testtesttest",target_lang="EN-US")
         return None
     
 
