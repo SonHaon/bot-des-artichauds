@@ -49,7 +49,7 @@ class MyTranslator(Translator):
         context: TranslationContext
         ):
         if locale is Locale.french and context.location is TranslationContextLocation.command_name:
-            if context.data.name == "ping":
+            if context.data.name == "ping" or context.data.name == "quote":
                 return "testtesttest"
             return None
         #if locale is Locale.french and context.location is TranslationContextLocation.command_description:
