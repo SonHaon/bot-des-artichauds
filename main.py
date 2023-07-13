@@ -2,7 +2,7 @@ import asyncio
 from pathlib import Path
 import discord
 from discord.ext import commands
-from discord import app_commands
+from discord import app_commands, Locale
 from discord.ui import *
 import random
 import os
@@ -12,6 +12,7 @@ from PIL import Image,ImageFont,ImageDraw,ImageOps
 import logging
 import logging.handlers
 import deepl
+from discord.app_commands import Translator, locale_str, TranslationContext, TranslationContextLocation
 
 from Cogs.checks import check
 from Cogs.fonction import *
@@ -40,7 +41,18 @@ formatter = logging.Formatter('[{asctime}] {name}: {message}', dt_fmt, style='{'
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-
+class MyTranslator(Translator):
+    async def translate(
+        self,
+        string: locale_str,
+        locale: Locale,
+        context: TranslationContext
+        ):
+        if locale is Locale.french and context.location is TranslationContextLocation.command_name:
+            if context.data.name == "ping":
+                return "testtesttest"
+            return None
+        return None
     
 
 
@@ -53,6 +65,7 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # set le traducteur
+        await self.tree.set_translator(MyTranslator)
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
