@@ -48,9 +48,10 @@ class MyTranslator(Translator):
         locale: Locale,
         context: TranslationContext
         ):
-        if locale is Locale.american_english and context.location is TranslationContextLocation.command_name:
-            name = translator.translate_text(string.message,target_lang="EN-US")
-            return name
+        if locale is Locale.french and context.location is TranslationContextLocation.command_name:
+            if context.data.name == "ping":
+                return "testtesttest"
+            return None
         return None
     
 
@@ -102,7 +103,7 @@ class bot(commands.Bot):
         # commandes de minecraft
         await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
-        #await self.tree.sync(guild=guild)
+        await self.tree.sync(guild=guild)
         await self.tree.sync()
 
 
