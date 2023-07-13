@@ -21,7 +21,8 @@ class minecraft_commands(commands.Cog):
     @check.is_SonHaon()
     async def minecraft_commands(self,interaction:discord.Interaction,commande:str):
         await interaction.response.defer()
-        await interaction.edit_original_response(f"la commande `{commande}` à bien été éxecuté\n{os.popen(f'echo "{commande}" > /run/minecraft.stdin').read()}",ephemeral=True)
+        await interaction.edit_original_response(f"pinguin")
+        await interaction.edit_original_response(f"la commande `{commande}` à bien été éxecuté\n{os.popen(f'echo "{commande}" > /run/minecraft.stdin').read()}")
         logger.info(f"'{interaction.user.display_name}' a éxecuté la commande '{commande}' sur le serveur minecraft depuis le channel '{interaction.channel.name}'")
         
         
