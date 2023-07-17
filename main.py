@@ -48,14 +48,14 @@ class MyTranslator(Translator):
         locale: Locale,
         context: TranslationContext
         ):
-        if locale is Locale.french and context.location is TranslationContextLocation.command_name:
-            if context.data.name == "ping" or context.data.name == "quote":
-                return "testtesttest"
-            return None
-        if locale is Locale.french and context.location is TranslationContextLocation.command_description:
-            if string.message == "verifie si le bot marche":
-                return translator.translate_text(string.message,target_lang="EN-US")
-            return None
+        #if locale is Locale.french and context.location is TranslationContextLocation.command_name:
+        #    if context.data.name == "ping" or context.data.name == "quote":
+        #        return "testtesttest"
+        #    return None
+        #if locale is Locale.french and context.location is TranslationContextLocation.command_description:
+        #    if string.message == "verifie si le bot marche":
+        #        return translator.translate_text(string.message,target_lang="EN-US")
+        #    return None
         return None
     
 
