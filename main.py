@@ -55,7 +55,7 @@ class MyTranslator(Translator):
         #    except:
         #        return None
         #else:
-        ""    try:
+        #    try:
         #        return string.extras["en"]
         #    except:
         #        return None
