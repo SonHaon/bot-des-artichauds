@@ -49,17 +49,17 @@ class MyTranslator(Translator):
         context: TranslationContext
         ):
         print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
-        if locale is Locale.french:
-            try:
-                return string.extras["fr"]
-            except:
-                return None
-        else:
-            try:
-                return string.extras["en"]
-            except:
-                return None
-    
+        #if locale is Locale.french:
+        #    try:
+        #        return string.extras["fr"]
+        #    except:
+        #        return None
+        #else:
+        ""    try:
+        #        return string.extras["en"]
+        #    except:
+        #        return None
+        return None 
 
 
 
@@ -71,7 +71,7 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # set le traducteur
-        #await self.tree.set_translator(MyTranslator())
+        await self.tree.set_translator(MyTranslator())
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
