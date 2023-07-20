@@ -149,9 +149,6 @@ async def on_app_command_error(interaction:discord.Interaction,error):
             await interaction.edit_original_response(embed=embed)
         raise error
 
-@SonHaon_Bot.on_error()
-async def on_error(error):
-    print(error)
 
 # caractère invisible : (⁠)
 
