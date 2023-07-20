@@ -249,8 +249,8 @@ class sondage(commands.GroupCog,
     @app_commands.command(
         name=_t(
             "oui_non",
-            fr="oui/non",
-            en="yes/no"
+            fr="oui_non",
+            en="yes_no"
         ),
         description=_t(
             "description",
