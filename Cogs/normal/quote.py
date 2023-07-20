@@ -24,9 +24,32 @@ class quote(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
     
-    @app_commands.command(name="quote",description="cite un message grace a son id")
-    @app_commands.rename(message_id="id_du_message")
-    @app_commands.describe(message_id="identifiant du message a récupérer")
+    @app_commands.command(
+        name=_t(
+            "quote",
+            fr="citer",
+            en="quote"
+        ),
+        description=_t(
+            "description",
+            fr="cite un message grace a son id",
+            en="quote a message using its id"
+        )
+    )
+    @app_commands.rename(
+        message_id=_t(
+            "id_du_message",
+            fr="id_message",
+            en="message_id"
+        )
+    )
+    @app_commands.describe(
+        message_id=_t(
+            "description",
+            fr="identifiant du message a récupérer",
+            en="message identifier to get"
+        )
+    )
     async def quote(self,interaction:discord.Interaction,message_id:str):
         await interaction.response.defer()
         message:discord.Message = await recup_message_by_id(interaction, int(message_id))

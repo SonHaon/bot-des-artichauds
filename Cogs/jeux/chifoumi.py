@@ -350,9 +350,32 @@ class chifoumi(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
 
-    @app_commands.command(name="chifoumi",description="permet de faire un chifoumi avec la personne de son choix, par default le bot")
-    @app_commands.rename(user="advesaire")
-    @app_commands.describe(user="personne contre qui vous voulez jouer")
+    @app_commands.command(
+        name=_t(
+            "chifoumi",
+            fr="chifoumi",
+            en="rock-paper-scissors"
+        ),
+        description=_t(
+            "description",
+            fr="permet de faire un chifoumi avec la personne de son choix, par default le bot",
+            en="allows you to make a rock-paper-scissors with the person of your choice, by default the bot"
+        )
+    )
+    @app_commands.rename(
+        user=_t(
+            "advesaire",
+            fr="adversaire",
+            en="opponent"
+        )
+    )
+    @app_commands.describe(
+        user=_t(
+            "description",
+            fr="personne contre qui vous voulez jouer",
+            en="who you want to play against"
+        )
+    )
     async def chifoumi(self,interaction:discord.Interaction,user:discord.User=None):
         if user == None or user==self.bot.user:
             await solo(interaction=interaction,adversaire=self.bot.user,bot=self.bot)

@@ -20,7 +20,18 @@ class help(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot
 
-    @app_commands.command(name="help",description="affiche le menu d'aide de toutes commandes")
+    @app_commands.command(
+        name=_t(
+            "help",
+            fr="aide",
+            en="help"
+        ),
+        description=_t(
+            "description",
+            fr="affiche le menu d'aide de toutes commandes",
+            en="displays help menu for all commands"
+        )
+    )
     async def help(self, interaction: discord.Interaction) -> None:
         if a_role(interaction.user,self.bot.roles.chef):
             await interaction.response.send_message(embed=embed_default_admin,view=View_tout_admin(default_catergory=None))

@@ -8,6 +8,7 @@ import random
 
 from ..couleurs import couleur 
 from ..fonction import log
+from ..checks import check
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -16,10 +17,33 @@ class clear(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
 
-    @app_commands.command(name="clear",description="supprime un nombre donné de message")
-    @app_commands.checks.has_permissions(manage_messages=True)
-    @app_commands.rename(nb="nombre_de_messages")
-    @app_commands.describe(nb="nombre de message à supprimé")
+    @app_commands.command(
+        name=_t(
+            "clear",
+            fr="supprimer",
+            en="clear"
+        ),
+        description=_t(
+            "description",
+            fr="supprime un nombre donné de message",
+            en="deletes a given number of messages"
+        )
+    )
+    @check.is_chef()
+    @app_commands.rename(
+        nb=_t(
+            "nombre_messages",
+            fr="nombre_messages",
+            en="message_number"
+        )
+    )
+    @app_commands.describe(
+        nb=_t(
+            "description",
+            fr="nombre de message à supprimer",
+            en="number of messages to delete"
+        )
+    )
     async def clear(self,interaction:discord.Interaction,nb:int):
         await interaction.response.defer(ephemeral=True)
         await interaction.channel.purge(limit=nb)

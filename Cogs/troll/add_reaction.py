@@ -17,10 +17,38 @@ class add_reaction(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
     
-    @app_commands.command(name="add_réaction",description="fait ajouter un emoji au bot")
+    @app_commands.command(
+        name=_t(
+            "add_réaction",
+            fr="ajouter_réaction",
+            en="add_reaction"
+        ),
+        description=_t(
+            "description",
+            fr="fait ajouter un emoji au bot",
+            en="make the bot add an emoji"
+        )
+    )
     @check.is_chef()
-    @app_commands.rename(id="id_du_message")
-    @app_commands.describe(emoji="l'émoji à ajouter",id="l'identifiant du message auquel la réaction sera ajouter")
+    @app_commands.rename(
+        id=_t(
+            "name",
+            fr="id_message",
+            en="message_id"
+        )
+    )
+    @app_commands.describe(
+        emoji=_t(
+            "description",
+            fr="l'émoji à ajouter",
+            en="emoji to add"
+        ),
+        id=_t(
+            "description",
+            fr="l'id du message auquel la réaction sera ajouter",
+            en="id of the message to which the reaction will be added"
+        )
+    )
     async def add_emoji(self,interaction:discord.Interaction,emoji:str,id:str):
         await interaction.response.defer(ephemeral=True)
         message:discord.Message= await recup_message_by_id(interaction,int(id))

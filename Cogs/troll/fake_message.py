@@ -14,7 +14,18 @@ class fake_message(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot 
 
-    @app_commands.command(name="fake_message",description="créer un faux message de la part d'un personne")
+    @app_commands.command(
+        name=_t(
+            "fake_message",
+            fr="faux_message",
+            en="fake_message"
+        ),
+        description=_t(
+            "description",
+            fr="créer un faux message de la part d'un personne",
+            en="create a fake message from a person"
+        )
+    )
     @check.is_SonHaon()
     async def fake_message(self,interaction:discord.Interaction,user:discord.User,message:str):
         webhook:discord.Webhook = await interaction.channel.create_webhook(name=user.display_name)

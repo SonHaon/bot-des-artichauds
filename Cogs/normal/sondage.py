@@ -235,18 +235,52 @@ class bouton_sondage_perso_anonyme(discord.ui.View):
 
 
 
-class sondage(commands.GroupCog, name="sondage"): 
+class sondage(commands.GroupCog, 
+    name=_t(
+        "sondage",
+        fr="sondage",
+        en="poll"
+    )
+): 
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
         super().__init__()
 
-    @app_commands.command(name="oui_non",description="lance un sondage oui/non")
+    @app_commands.command(
+        name=_t(
+            "oui_non",
+            fr="oui/non",
+            en="yes/no"
+        ),
+        description=_t(
+            "description",
+            fr="lance un sondage oui/non",
+            en="launch a yes/no poll"
+        )
+    )
     @check.is_chef()
     @app_commands.choices(
-        anonyme=[app_commands.Choice(name="Oui",value="True"),app_commands.Choice(name="Non",value="False")]
+        anonyme=[app_commands.Choice(name=_t("choix",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("choix",fr="Non",en="no"),value="False")]
     )
-    @app_commands.rename(title="titre")
-    @app_commands.describe(title="titre du sondage",question="question du sondage")
+    @app_commands.rename(
+        title=_t(
+            "name",
+            fr="titre",
+            en="title"
+        )
+    )
+    @app_commands.describe(
+        title=_t(
+            "description",
+            fr="titre du sondage",
+            en="poll title"
+        ),
+        question=_t(
+            "description",
+            fr="question du sondage",
+            en="poll question"
+        )
+    )
     async def sondage_ouinon(self,interaction:discord.Interaction,title:str,question:str,anonyme:str):
         if anonyme == "False":
             embed_base = discord.Embed(title=title,description=question,color=couleur.bleu)
@@ -269,10 +303,33 @@ class sondage(commands.GroupCog, name="sondage"):
             await log(self.bot,interaction.user,f"j'ai lancé un sondage anonyme oui/non dans {interaction.channel.mention} : {message.jump_url}")
 
 
-    @app_commands.command(name="fin",description="met fin à un sondage")
+    @app_commands.command(
+        name=_t(
+            "fin",
+            fr="fin",
+            en="end"
+        ),
+        description=_t(
+            "description",
+            fr="met fin à un sondage",
+            en="ends poll"
+        )
+    )
     @check.is_chef()
-    @app_commands.rename(id="id_du_sondage")
-    @app_commands.describe(id="id du message contenant le sondage")
+    @app_commands.rename(
+        id=_t(
+            "name",
+            fr="id_du_sondage",
+            en="poll_id"
+        )
+    )
+    @app_commands.describe(
+        id=_t(
+            "description",
+            fr="id du message contenant le sondage",
+            en="id of the message containing poll"
+        )
+    )
     async def fin(self,interaction:discord.Interaction,id:str):
         await interaction.response.defer(ephemeral=True)
         sondage:discord.Message = await interaction.channel.fetch_message(id)
@@ -398,10 +455,21 @@ class sondage(commands.GroupCog, name="sondage"):
 
 
 
-    @app_commands.command(name="personnalisé",description="créer un sondage avec deux choix personalisable")
+    @app_commands.command(
+        name=_t(
+            "personnalisé",
+            fr="personalisé",
+            en="personalized"
+        ),
+        description=_t(
+            "description",
+            fr="créer un sondage avec deux choix personalisable",
+            en="create a poll with two personalized choices"
+        )
+    )
     @check.is_chef()
     @app_commands.choices(
-        anonyme=[app_commands.Choice(name="Oui",value="True"),app_commands.Choice(name="Non",value="False")]
+        anonyme=[app_commands.Choice(name=_t("choix",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("choix",fr="Non",en="no"),value="False")]
     )
     @app_commands.rename(
         anonyme="anonyme",

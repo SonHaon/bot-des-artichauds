@@ -17,10 +17,48 @@ class say(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
     
-    @app_commands.command(name="say",description="permet de faire envoyer un message au bot")
+    @app_commands.command(
+        name=_t(
+            "say",
+            fr="say",
+            en="say"
+        ),
+        description=_t(
+            "description",
+            fr="permet de faire envoyer un message au bot",
+            en="send a message to the bot"
+        )
+    )
     @check.is_chef()
-    @app_commands.rename(content="message",file="fichier")
-    @app_commands.describe(content="message à envoyer",file="fichier à envoyer",channel="channel où le message va être envoyé")
+    @app_commands.rename(
+        content=_t(
+            "name",
+            fr="message",
+            en="message"
+        ),
+        file=_t(
+            "name",
+            fr="fichier",
+            en="file"
+        )
+    )
+    @app_commands.describe(
+        content=_t(
+            "description",
+            fr="message à envoyer",
+            en="message to send"
+        ),
+        file=_t(
+            "description",
+            fr="fichier à envoyer",
+            en="file to send"
+        ),
+        channel=_t(
+            "description",
+            fr="channel où le message va être envoyé",
+            en="channel where message will be sent"
+        )
+    )
     async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None):
         await interaction.response.defer(ephemeral=True)
         if channel == None:

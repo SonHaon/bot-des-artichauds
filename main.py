@@ -54,7 +54,11 @@ class MyTranslator(Translator):
                 return string.extras["fr"]
             except:
                 return None
-        return None
+        else:
+            try:
+                return string.extras["en"]
+            except:
+                return None
     
 
 
@@ -79,7 +83,6 @@ class bot(commands.Bot):
         # commandes de troll
         await self.add_cog(say(bot=self),guild=guild)
         await self.add_cog(add_reaction(bot=self),guild=guild)
-        await self.add_cog(spam(bot=self),guild=guild)
         await self.add_cog(fake_message(bot=self),guild=guild)
         # commandes de modération
         await self.add_cog(clear(bot=self),guild=guild)
@@ -102,8 +105,6 @@ class bot(commands.Bot):
         await self.add_cog(trad_de(bot=self),guild=guild)
         await self.add_cog(trad_sp(bot=self),guild=guild)
         await self.add_cog(langue(bot=self),guild=guild)
-        # commandes de minecraft
-        await self.add_cog(minecraft_commands(bot=self),guild=discord.Object(id=916617095876337664))
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()

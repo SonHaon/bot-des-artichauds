@@ -17,7 +17,18 @@ class set_auto_role(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
 
-    @app_commands.command(name="set_auto_role",description="créer le message pour l'auto role")
+    @app_commands.command(
+        name=_t(
+            "set_auto_role",
+            fr="création_auto_role",
+            en="set_auto_role"
+        ),
+        description=_t(
+            "description",
+            fr="créer le message pour l'auto role",
+            en="create message for auto role"
+        )
+    )
     async def set_auto_role(self,interaction:discord.Interaction):
         embed = discord.Embed(title = "A vos rôles", description = "cliquez sur le bouton pour ajouter un role\nrecliquez sur le bouton pour retirer le role")
         embed.add_field(name="Role : ",value=message_auto_role(interaction))

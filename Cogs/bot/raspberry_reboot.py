@@ -50,7 +50,18 @@ class raspberry_reboot(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
 
-    @app_commands.command(name="raspberry_reboot",description="redémarre le raspberry, à ne faire qu'en cas d'urgence")
+    @app_commands.command(
+        name=_t(
+            "raspberry_reboot",
+            fr="redémarrage_du_raspberry",
+            en="raspberry_restart"
+        ),
+        description=_t(
+            "description",
+            fr="redémarre le raspberry, à ne faire qu'en cas d'urgence",
+            en="restarts raspberry, only to be used in an emergency"
+        )
+    )
     @check.is_SonHaon()
     async def raspberry_reboot(self,interaction:discord.Interaction):
         await interaction.response.send_message("Voulez-vous vraiment faire ca ?",view=bouton_validation(self.bot),ephemeral=True)

@@ -4,7 +4,6 @@ from Cogs.normal.sondage import sondage
 
 from Cogs.troll.say import say
 from Cogs.troll.add_reaction import add_reaction
-from Cogs.troll.spam import spam
 from Cogs.troll.fake_message import fake_message
 
 from Cogs.jeux.chifoumi import chifoumi
@@ -31,5 +30,3 @@ from Cogs.traduction.trad_en import trad_en
 from Cogs.traduction.trad_de import trad_de
 from Cogs.traduction.trad_sp import trad_sp
 from Cogs.traduction.langue import langue
-
-from Cogs.minecraft.minecraft_command import minecraft_commands

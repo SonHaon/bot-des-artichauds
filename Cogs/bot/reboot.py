@@ -18,7 +18,18 @@ class reboot(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
 
-    @app_commands.command(name="reboot",description="redémarre le bot et le mets a jour")
+    @app_commands.command(
+        name=_t(
+            "reboot",
+            fr="redémmarage",
+            en="restart"
+        ),
+        description=_t(
+            "description",
+            fr="redémarre le bot et le mets a jour",
+            en="restart the bot and update it"
+        ),
+    )
     @check.is_SonHaon()
     async def reboot(self,interaction:discord.Interaction):
         await self.bot.change_presence(status=discord.Status.offline)

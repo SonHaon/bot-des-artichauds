@@ -16,19 +16,30 @@ class trouve_le_nombre(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
     
-    @app_commands.command(name="trouve_le_nombre",description="flm")
+    @app_commands.command(
+        name=_t(
+            "trouve_le_nombre",
+            fr="trouve_le_nombre",
+            en="guess_the_number"
+        ),
+        description=_t(
+            "description",
+            fr="j'ai eu la flemme de faire une description",
+            en="I was too lazy to write a description"
+        )
+    )
     @app_commands.choices(tentative= [
-        app_commands.Choice(name=f"trop trop trop simple (infini essais)",value="999"),
-        app_commands.Choice(name="très facile (8 essais)",value="8"),
-        app_commands.Choice(name="facile (7 essais)",value="7"),
-        app_commands.Choice(name="normal (6 essais)",value="6"),
-        app_commands.Choice(name="difficile (5 essais)",value="5"),
-        app_commands.Choice(name="très difficile (4 essais)",value="4"),
-        app_commands.Choice(name="impossible (3 essais)",value="3"),
-        app_commands.Choice(name="1 essai (1 essai)",value="1")
+        app_commands.Choice(name=_t("choix",fr="trop trop trop simple (infini essais)",en="too much too simple (infinite attempts)"),value="999"),
+        app_commands.Choice(name=_t("choix",fr="très facile (8 essais)",en="very easy (8 attemps)"),value="8"),
+        app_commands.Choice(name=_t("choix",fr="facile (7 essais)",en="easy (7 attemps)"),value="7"),
+        app_commands.Choice(name=_t("choix",fr="normal (6 essais)",en="normal (6 attemps)"),value="6"),
+        app_commands.Choice(name=_t("choix",fr="difficile (5 essais)",en="hard (5 attemps)"),value="5"),
+        app_commands.Choice(name=_t("choix",fr="très difficile (4 essais)",en="very hard (4 attemps)"),value="4"),
+        app_commands.Choice(name=_t("choix",fr="impossible (3 essais)",en="impossible (3 attemps)"),value="3"),
+        app_commands.Choice(name=_t("choix",fr="1 essai",en="1 try "),value="1")
     ])
-    @app_commands.rename(tentative="difficulté")
-    @app_commands.describe(tentative="difficulté du jeu")
+    @app_commands.rename(tentative=_t("name",fr="difficulté",en="difficulty"))
+    @app_commands.describe(tentative=_t("description",fr="difficulté du jeu",en="game difficulty"))
     async def trouve_le_nombre(self,interaction:discord.Interaction,tentative:str="6"):
         tentative=int(tentative)
         nombre = random.randint(1,100)
