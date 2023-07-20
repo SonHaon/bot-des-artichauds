@@ -49,16 +49,16 @@ class MyTranslator(Translator):
         context: TranslationContext
         ):
         print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
-        #if locale is Locale.french:
-        #    try:
-        #        return string.extras["fr"]
-        #    except:
-        #        return None
-        #else:
-        #    try:
-        #        return string.extras["en"]
-        #    except:
-        #        return None
+        if locale is Locale.french:
+            try:
+                return string.extras["fr"]
+            except:
+                return None
+        else:
+            try:
+                return string.extras["en"]
+            except:
+                return None
         return None 
 
 
