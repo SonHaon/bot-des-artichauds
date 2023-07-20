@@ -41,24 +41,24 @@ formatter = logging.Formatter('[{asctime}] {name}: {message}', dt_fmt, style='{'
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
-#class MyTranslator(Translator):
-#    async def translate(
-#        self,
-#        string: locale_str,
-#        locale: Locale,
-#        context: TranslationContext
-#        ):
-#        print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
-#        if locale is Locale.french:
-#            try:
-#                return string.extras["fr"]
-#            except:
-#                return None
-#        else:
-#            try:
-#                return string.extras["en"]
-#            except:
-#                return None
+class MyTranslator(Translator):
+    async def translate(
+        self,
+        string: locale_str,
+        locale: Locale,
+        context: TranslationContext
+        ):
+        print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
+        if locale is Locale.french:
+            try:
+                return string.extras["fr"]
+            except:
+                return None
+        else:
+            try:
+                return string.extras["en"]
+            except:
+                return None
     
 
 
@@ -71,7 +71,7 @@ class bot(commands.Bot):
         
     async def setup_hook(self):
         # set le traducteur
-        #await self.tree.set_translator(MyTranslator())
+        await self.tree.set_translator(MyTranslator())
         # commandes normal
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
