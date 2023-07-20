@@ -54,11 +54,7 @@ class MyTranslator(Translator):
                 return string.extras["fr"]
             except:
                 return None
-        else:
-            try:
-                return string.extras["en"]
-            except:
-                return None
+        return None
     
 
 
