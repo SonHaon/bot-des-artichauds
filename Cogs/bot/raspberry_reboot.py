@@ -1,6 +1,7 @@
 import asyncio 
 import discord 
 from discord.ext import  commands 
+from discord.app_commands import locale_str as _t
 from discord import  app_commands,ButtonStyle 
 from discord.ui import * 
 import random 

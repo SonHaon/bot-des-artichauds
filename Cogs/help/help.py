@@ -3,6 +3,7 @@ import discord
 from discord.ext import  commands 
 from discord import  app_commands,ButtonStyle 
 from discord.ui import * 
+from discord.app_commands import locale_str as _t
 import random
 
 import logging 
