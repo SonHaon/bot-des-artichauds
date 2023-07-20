@@ -32,12 +32,12 @@ class say(commands.Cog):
     @check.is_chef()
     @app_commands.rename(
         content=_t(
-            "name",
+            "1",
             fr="message",
             en="message"
         ),
         file=_t(
-            "name",
+            "2",
             fr="fichier",
             en="file"
         )

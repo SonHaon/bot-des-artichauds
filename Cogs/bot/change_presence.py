@@ -32,10 +32,10 @@ class change_presence(commands.Cog):
         )
     )
     @app_commands.choices(status=[
-        app_commands.Choice(name=_t("choice",fr="en ligne",en="online"),value="0"),
-        app_commands.Choice(name=_t("choice",fr="invisible",en="invisible"),value="1"),
-        app_commands.Choice(name=_t("choice",fr="absent",en="absent"),value="2"),
-        app_commands.Choice(name=_t("choice",fr="ne pas déranger",en="do not disturb"),value="3")]
+        app_commands.Choice(name=_t("1",fr="en ligne",en="online"),value="0"),
+        app_commands.Choice(name=_t("2",fr="invisible",en="invisible"),value="1"),
+        app_commands.Choice(name=_t("3",fr="absent",en="absent"),value="2"),
+        app_commands.Choice(name=_t("4",fr="ne pas déranger",en="do not disturb"),value="3")]
     )
     async def change_presence(self,interaction:discord.Interaction,status:str):
         status=int(status)

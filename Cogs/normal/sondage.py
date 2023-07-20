@@ -260,7 +260,7 @@ class sondage(commands.GroupCog,
     )
     @check.is_chef()
     @app_commands.choices(
-        anonyme=[app_commands.Choice(name=_t("choix",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("choix",fr="Non",en="no"),value="False")]
+        anonyme=[app_commands.Choice(name=_t("1",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("2",fr="Non",en="no"),value="False")]
     )
     @app_commands.rename(
         title=_t(
@@ -469,7 +469,7 @@ class sondage(commands.GroupCog,
     )
     @check.is_chef()
     @app_commands.choices(
-        anonyme=[app_commands.Choice(name=_t("choix",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("choix",fr="Non",en="no"),value="False")]
+        anonyme=[app_commands.Choice(name=_t("1",fr="Oui",en="yes"),value="True"),app_commands.Choice(name=_t("2",fr="Non",en="no"),value="False")]
     )
     @app_commands.rename(
         anonyme="anonyme",

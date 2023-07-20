@@ -29,14 +29,14 @@ class trouve_le_nombre(commands.Cog):
         )
     )
     @app_commands.choices(tentative= [
-        app_commands.Choice(name=_t("choix",fr="trop trop trop simple (infini essais)",en="too much too simple (infinite attempts)"),value="999"),
-        app_commands.Choice(name=_t("choix",fr="très facile (8 essais)",en="very easy (8 attemps)"),value="8"),
-        app_commands.Choice(name=_t("choix",fr="facile (7 essais)",en="easy (7 attemps)"),value="7"),
-        app_commands.Choice(name=_t("choix",fr="normal (6 essais)",en="normal (6 attemps)"),value="6"),
-        app_commands.Choice(name=_t("choix",fr="difficile (5 essais)",en="hard (5 attemps)"),value="5"),
-        app_commands.Choice(name=_t("choix",fr="très difficile (4 essais)",en="very hard (4 attemps)"),value="4"),
-        app_commands.Choice(name=_t("choix",fr="impossible (3 essais)",en="impossible (3 attemps)"),value="3"),
-        app_commands.Choice(name=_t("choix",fr="1 essai",en="1 try "),value="1")
+        app_commands.Choice(name=_t("1",fr="trop trop trop simple (infini essais)",en="too much too simple (infinite attempts)"),value="999"),
+        app_commands.Choice(name=_t("2",fr="très facile (8 essais)",en="very easy (8 attemps)"),value="8"),
+        app_commands.Choice(name=_t("3",fr="facile (7 essais)",en="easy (7 attemps)"),value="7"),
+        app_commands.Choice(name=_t("4",fr="normal (6 essais)",en="normal (6 attemps)"),value="6"),
+        app_commands.Choice(name=_t("5",fr="difficile (5 essais)",en="hard (5 attemps)"),value="5"),
+        app_commands.Choice(name=_t("6",fr="très difficile (4 essais)",en="very hard (4 attemps)"),value="4"),
+        app_commands.Choice(name=_t("7",fr="impossible (3 essais)",en="impossible (3 attemps)"),value="3"),
+        app_commands.Choice(name=_t("8",fr="1 essai",en="1 try "),value="1")
     ])
     @app_commands.rename(tentative=_t("name",fr="difficulté",en="difficulty"))
     @app_commands.describe(tentative=_t("description",fr="difficulté du jeu",en="game difficulty"))
