@@ -20,10 +20,19 @@ class test_lien(commands.Cog):
 
     @commands.Cog.listener(name="on_message")
     async def on_message(self, message:discord.Message):
-        if message.channel.id == 1012624628751007756 and not(message.author.bot):
+        if (message.channel.id == 1012624628751007756) and not(message.author.bot):
             url=f"https://bit.ly/{message.content}"
             reponse=get(url)
             if reponse.status_code == 404:
                 await message.reply(f"{url}  erreur 404",mention_author=False)
             else:
                 await message.reply(f"{url}  Ca marche !!!",mention_author=False)
+        if message.channel.id == 1133079615678709892 and not(message.author.bot):
+            url=f"https://bit.ly/{message.content}"
+            reponse=get(url)
+            if reponse.status_code == 404:
+                await message.channel.send(f"{url}  erreur 404",mention_author=False)
+                await message.delete()
+            else:
+                await message.channel.send(f"{url}  Ca marche !!!",mention_author=False)
+                await message.delete()
