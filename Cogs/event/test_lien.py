@@ -20,7 +20,8 @@ class test_lien(commands.Cog):
 
     @commands.Cog.listener(name="on_message")
     async def on_message(self, message:discord.Message):
-        await log(self.bot,message.author,f"messag_trouvé")
+        if message.guild.id != 916617095876337664:
+            await log(self.bot,message.author,f"messag_trouvé")
         if message.channel is discord.DMChannel:
             await log(self.bot,message.author,f"est dm channel")
             reponse=get(message.content)
