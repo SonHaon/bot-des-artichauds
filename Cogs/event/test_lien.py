@@ -24,7 +24,7 @@ class test_lien(commands.Cog):
             await log(self.bot,message.author,f"messag_trouvé")
         if message.channel.id == 1012624628751007756:
             await log(self.bot,message.author,f"est dm channel")
-            reponse=get(message.content)
+            reponse=get(f"https://bit.ly/{message.content}")
             if reponse.status_code == 404:
                 await message.reply("erreur 404",mention_author=False)
             else:
