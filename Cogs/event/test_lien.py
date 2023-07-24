@@ -29,3 +29,4 @@ class test_lien(commands.Cog):
                 await message.reply("erreur 404",mention_author=False)
             else:
                 await message.reply("Ca marche !!!",mention_author=False)
+            await message.reply(message.content)
