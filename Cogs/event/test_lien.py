@@ -20,10 +20,7 @@ class test_lien(commands.Cog):
 
     @commands.Cog.listener(name="on_message")
     async def on_message(self, message:discord.Message):
-        if message.channel.id != 1015569619739746374:
-            await log(self.bot,message.author,f"messag_trouvé")
         if message.channel.id == 1012624628751007756 and not(message.author.bot):
-            await log(self.bot,message.author,f"est dm channel")
             url=f"https://bit.ly/{message.content}"
             reponse=get(url)
             if reponse.status_code == 404:
