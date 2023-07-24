@@ -10,7 +10,7 @@ import deepl
 from requests import get
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
-from ..fonction import has_webhook
+from ..fonction import has_webhook,log
 
 translator = deepl.Translator("b2f44de3-fa00-9598-36ba-effea8104e2b:fx") 
 
@@ -20,7 +20,9 @@ class test_lien(commands.Cog):
 
     @commands.Cog.listener(name="on_message")
     async def on_message(self, message:discord.Message):
+        await log(self.bot,message.author,f"messag_trouvé")
         if message.channel is discord.DMChannel:
+            await log(self.bot,message.author,f"est dm channel")
             reponse=get(message.content)
             if reponse.status_code == 404:
                 await message.reply("erreur 404",mention_author=False)
