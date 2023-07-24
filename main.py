@@ -92,7 +92,7 @@ class bot(commands.Bot):
         await self.add_cog(help_id(bot=self),guild=guild)
         # commandes de bot
         await self.add_cog(change_presence(bot=self),guild=guild)
-        await self.add_cog(reboot(bot=self),guilds=[guild,discord.Object(id=916617095876337664)])
+        await self.add_cog(reboot(bot=self))
         await self.add_cog(raspberry_reboot(bot=self),guilds=[guild,discord.Object(id=916617095876337664)])
         # event
         await self.add_cog(timeout(bot=self),guild=guild)
