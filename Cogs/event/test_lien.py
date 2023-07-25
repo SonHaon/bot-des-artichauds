@@ -27,7 +27,7 @@ class test_lien(commands.Cog):
                 await message.reply(f"{url}  erreur 404",mention_author=False)
             else:
                 await message.reply(f"{url}  Ca marche !!!",mention_author=False)
-        if message.channel.id == 1133079615678709892 and not(message.author.bot):
+        if message.channel.id == 1133079615678709892 and not(message.author.bot) and not(message.content.startswith("!")):
             url=f"https://bit.ly/{message.content}"
             reponse=get(url)
             if reponse.status_code == 404:
