@@ -28,7 +28,7 @@ class test_lien(commands.Cog):
             else:
                 await message.reply(f"{url}  Ca marche !!!",mention_author=False)
         if message.channel.id == 1133079615678709892 and not(message.author.bot) and not(message.content.startswith("!")):
-            webhook=has_webhook(message.channel,message.author)
+            webhook= await has_webhook(message.channel,message.author)
             url=f"https://bit.ly/{message.content}"
             reponse=get(url)
             if reponse.status_code == 404:
