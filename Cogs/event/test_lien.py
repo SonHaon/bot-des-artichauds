@@ -32,8 +32,8 @@ class test_lien(commands.Cog):
             url=f"https://bit.ly/{message.content}"
             reponse=get(url)
             if reponse.status_code == 404:
-                await webhook.send(content=f"{url}  erreur 404",)
+                await webhook.send(content=f"{url}  erreur 404")
                 await message.delete()
             else:
-                await webhook.send(content=f"{url}  Ca marche !!!",mention_author=False)
+                await webhook.send(content=f"{url}  Ca marche !!!")
                 await message.delete()
