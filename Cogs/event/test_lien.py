@@ -30,10 +30,13 @@ class test_lien(commands.Cog):
         if message.channel.id == 1133079615678709892 and not(message.author.bot) and not(message.content.startswith("!")):
             webhook= await has_webhook(message.channel,message.author)
             url=f"https://bit.ly/{message.content}"
-            reponse=get(url)
-            if reponse.status_code == 404:
-                await webhook.send(content=f"{url}  erreur 404")
-                await message.delete()
-            else:
-                await webhook.send(content=f"{url}  Ca marche !!!")
-                await message.delete()
+            try:
+                reponse=get(url)
+                if reponse.status_code == 404:
+                    await webhook.send(content=f"{url}  erreur 404")
+                    await message.delete()
+                else:
+                    await webhook.send(content=f"{url}  Ca marche !!!")
+                    await message.delete()
+            except:
+                await webhook.send(content=f"{url}  page down")
