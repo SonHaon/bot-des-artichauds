@@ -35,7 +35,7 @@ class channel_history(commands.Cog):
         try:
             file= open("channel_history.txt",'w+')
             async for message in interaction.channel.history():
-                file.writelines(f"{message}\n")
+                file.writelines(f"{message.content}\n")
             file.close()
             await interaction.edit_original_response(content="voila :)",attachments=[discord.File("/home/sonhaon/bot-des-artichauds/channel_history.txt")])
         except:
