@@ -37,7 +37,7 @@ class channel_history(commands.Cog):
             async for message in interaction.channel.history():
                 file.writelines(f"{message}\n")
             file.close()
-            await interaction.edit_original_response("voila :)",attachments=[file])
+            await interaction.edit_original_response(content="voila :)",attachments=[file])
         except:
-            await interaction.edit_original_response("ca marche pas")
+            await interaction.edit_original_response(content="ca marche pas")
 
