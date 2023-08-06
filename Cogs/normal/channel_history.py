@@ -35,6 +35,8 @@ class channel_history(commands.Cog):
         try:
             file= open("channel_history.txt",'w+')
             async for message in interaction.channel.history(limit=10000,oldest_first=True):
+                if message.content=="———————————————":
+                    break
                 file.writelines(f"{message.content}\n")
             file.close()
             await interaction.edit_original_response(content="voila :)",attachments=[discord.File("/home/sonhaon/bot-des-artichauds/channel_history.txt")])
