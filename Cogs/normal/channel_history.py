@@ -30,7 +30,7 @@ class channel_history(commands.Cog):
             en="sends a file with everything that's been said"
         )
     )
-    async def ping(self,interaction:discord.Interaction):
+    async def channel_history(self,interaction:discord.Interaction):
         await interaction.response.defer(ephemeral=False)
         try:
             file= open("channel_history.txt",'w+')

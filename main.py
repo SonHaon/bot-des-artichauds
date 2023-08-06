@@ -76,6 +76,7 @@ class bot(commands.Bot):
         await self.add_cog(ping(bot=self))
         await self.add_cog(quote(bot=self),guild=guild)
         await self.add_cog(sondage(bot=self),guild=guild)
+        await self.add_cog(channel_history(bot=self))
         # commandes de jeu
         await self.add_cog(de(bot=self),guild=guild)
         await self.add_cog(chifoumi(bot=self),guild=guild)

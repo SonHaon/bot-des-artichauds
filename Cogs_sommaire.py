@@ -1,6 +1,7 @@
 from Cogs.normal.ping import ping
 from Cogs.normal.quote import quote
 from Cogs.normal.sondage import sondage
+from Cogs.normal.channel_history import channel_history
 
 from Cogs.troll.say import say
 from Cogs.troll.add_reaction import add_reaction
