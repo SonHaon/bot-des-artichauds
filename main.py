@@ -48,7 +48,7 @@ class MyTranslator(Translator):
         locale: Locale,
         context: TranslationContext
         ):
-        print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
+        #print(str(context.location).removeprefix("TranslationContextLocation."), string.extras)
         if locale is Locale.french:
             try:
                 return string.extras["fr"]
