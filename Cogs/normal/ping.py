@@ -34,7 +34,7 @@ class ping(commands.Cog):
         await interaction.response.defer(ephemeral=True)
         await interaction.edit_original_response(content=await trad(
             self.bot,
-                _t(f"the bot latency is {round(self.bot.latency*1000)}ms",
+                _t("",
                 fr=f"le ping du bot est de {round(self.bot.latency*1000)}ms",
                 en=f"the bot latency is {round(self.bot.latency*1000)}ms"),
             interaction.locale))
