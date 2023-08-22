@@ -33,7 +33,7 @@ class ping(commands.Cog):
     async def ping(self,interaction:discord.Interaction):
         await interaction.response.defer(ephemeral=True)
         await interaction.edit_original_response(content=await trad(
-            None,
+            self.bot,
                 _t(f"the bot latency is {round(self.bot.latency*1000)}ms",
                 fr=f"le ping du bot est de {round(self.bot.latency*1000)}ms",
                 en=f"the bot latency is {round(self.bot.latency*1000)}ms"),
