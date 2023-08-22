@@ -114,6 +114,7 @@ class bot(commands.Bot):
 
     async def on_ready(self):
         await self.wait_until_ready()
+        self.translate=MyTranslator.translate
         self.roles = get_role(guild=self.get_guild(900046546656182322))
         self.member = get_user(bot=self)
         self.channel = get_channel(bot=self)

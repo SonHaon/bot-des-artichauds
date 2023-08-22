@@ -11,7 +11,7 @@ from io import BytesIO
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 import logging
 
-from ..fonction import log
+from ..fonction import log,trad
 logger = logging.getLogger('discord.artichauds')
 
 class ping(commands.Cog):
@@ -32,6 +32,11 @@ class ping(commands.Cog):
     )
     async def ping(self,interaction:discord.Interaction):
         await interaction.response.defer(ephemeral=True)
-        await interaction.edit_original_response(content=f"le ping du bot est de {round(self.bot.latency*1000)}ms")
+        await interaction.edit_original_response(content=trad(
+            None,
+                _t(f"the bot latency is {round(self.bot.latency*1000)}ms",
+                fr=f"le ping du bot est de {round(self.bot.latency*1000)}ms",
+                en=f"the bot latency is {round(self.bot.latency*1000)}ms"),
+            interaction.locale))
         logger.info(f"'{interaction.user.display_name}' à éxecuté la commande '/ping' dans le channel '{interaction.channel.name}'")
         await log(self.bot,interaction.user,f"j'ai fait **/ping** dans {interaction.channel.mention}")

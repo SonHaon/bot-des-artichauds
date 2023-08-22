@@ -101,3 +101,6 @@ async def image_bienvenue_en(bot,member:discord.Member):
     channel_image=bot.get_channel(1009137943077724240)
     message = await channel_image.send(file=discord.File("/home/sonhaon/bot-des-artichauds/image_en.png"))
     return message.attachments[0].url
+
+async def trad(bot,trad,locale):
+    return await bot.translate(None,trad,locale,None)
