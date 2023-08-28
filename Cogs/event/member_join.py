@@ -94,7 +94,6 @@ class member_join(commands.Cog):
             return
         elif member.id == 931236217465471066:
             channel = member.guild.get_channel(1007578769722179657)
-        image_url = await image_bienvenue_fr(self.bot,member)
         embed = await embed_fr(self.bot,member)
         await channel.send(member.mention,embed=embed,view=bouton_trad(self.bot))
         await asyncio.sleep(2)
