@@ -16,7 +16,7 @@ from ..fonction import log,image_bienvenue_fr,image_bienvenue_en
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
             title="Ho ! Un nouveau jardinier !",
-            description=f"""🎉 Amis <@&948895100346437676>, nous accueillons un nouvel Artichaud : {member.name} 🎉!
+            description=f"""🎉 Amis <@&948895100346437676>, nous accueillons un nouvel Artichaud : {member.display_name} 🎉!
 
 Nous sommes un clan actif, voici les deux seules conditions demandées :
 La plus importante : Au moins 100 ressources (os et chairs) pour les coffres de clan chaque semaine. Tout le monde profite des récompenses, il est normal que tout le monde participe. Il n'est nullement obligatoire de faire les runs payants, chacun fait comme il veut. Faire le run gratuit chaque jour suffit amplement pour atteindre cet objectif.
@@ -42,7 +42,7 @@ Au plaisir de te voir participer a notre ferme ☺️""",
 async def embed_en(bot,member:discord.Member):
     embed = discord.Embed(
             title="Ho ! A new gardener !",
-            description=f"""🎉 Friends <@&948895100346437676>, we welcome a new Artichaud: {member.name} 🎉!
+            description=f"""🎉 Friends <@&948895100346437676>, we welcome a new Artichaud: {member.display_name} 🎉!
 
 We're an active clan, so here are the only two conditions required:
 The most important: At least 100 resources (bones and flesh) for clan chests every week. Everyone benefits from the rewards, so it's normal for everyone to participate. There's no obligation to do the paid runs - everyone does as they please. Doing the free run every day is more than enough to reach this goal.
