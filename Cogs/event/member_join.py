@@ -16,11 +16,21 @@ from ..fonction import log,image_bienvenue_fr,image_bienvenue_en
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
             title="Ho ! Un nouveau jardinier !",
-            description=f"""🎉  Nous accueillons un nouveau <@&948895100346437676>  {member.name}  🎉!
+            description=f"""🎉 Amis <@&948895100346437676>, nous accueillons un nouvel Artichaud : {member.name} 🎉!
 
-Tu peu nous faire une petite presentation dans <#900048923534688286> 
-Lire le règlement et intégrer les roles qui peuvent t’intéresser <#900068827595956234> 
-Si besoin d’aide pour faire tes ~~10k~~ 5k points de clan, le détail ||du merveilleux kaseiya 😏|| epinglé dans <#900384566802530314> pourra peu être t’aider.
+Nous sommes un clan actif, voici les deux seules conditions demandées :
+La plus importante : Au moins 100 ressources (os et chairs) pour les coffres de clan chaque semaine. Tout le monde profite des récompenses, il est normal que tout le monde participe. Il n'est nullement obligatoire de faire les runs payants, chacun fait comme il veut. Faire le run gratuit chaque jour suffit amplement pour atteindre cet objectif.
+Ensuite, au moins 3500 points d'activité de clan chaque semaine. Là encore, pas la peine de forcer, en jouant normalement et en faisant les dons et aides aux éclosions, ça se fait tout seul.
+
+Comme tu pourras le voir, nous avons beaucoup de canaux pour bien séparer tous les aspects du jeu.
+Les informations principales sont souvent en messages épinglés.
+Cependant, nous avons des experts du hors-sujet assez compétitifs, donc si tu ne trouves pas de réponse à une question, n'hésite pas à demander.
+
+Tu peux :
+nous faire une petite présentation dans <#900048923534688286>
+lire le règlement et intégrer les rôles qui peuvent t’intéresser <#900068827595956234> 
+
+Si besoin d’aide pour faire tes 3,5k points de clan, le détail ||de notre prisonnier politique Kaseiya 😏|| épinglé dans <#900384566802530314> pourra peut-être t’aider.
 
 Bonne visite, si tu as des questions n’hésite pas.
 
@@ -32,15 +42,25 @@ Au plaisir de te voir participer a notre ferme ☺️""",
 async def embed_en(bot,member:discord.Member):
     embed = discord.Embed(
             title="Ho ! A new gardener !",
-            description=f"""🎉 We welcome a new <@&948895100346437676> {member.name} 🎉!
+            description=f"""🎉 Friends <@&948895100346437676>, we welcome a new Artichaud: {member.name} 🎉!
 
-You can give us a little presentation in <#900048923534688286> 
-Read the rules and integrate the roles that may interest you <#900068827595956234> 
-If you need help to make your ~~10k~~ 5k clan points, the detail ||of the wonderful kaseiya 😏|| pinned in <#900384566802530314> might be able to help you.
+We're an active clan, so here are the only two conditions required:
+The most important: At least 100 resources (bones and flesh) for clan chests every week. Everyone benefits from the rewards, so it's normal for everyone to participate. There's no obligation to do the paid runs - everyone does as they please. Doing the free run every day is more than enough to reach this goal.
+Next, at least 3500 points of clan activity every week. Here again, there's no need to force the issue: if you play normally and donate and help with hatchings, it'll take care of itself.
+
+As you can see, we've got plenty of channels to keep all aspects of the game separate.
+The main information is often in pinned messages.
+However, we have some pretty competitive off-topic experts, so if you can't find an answer to a question, don't hesitate to ask.
+
+You can:
+give us a little presentation in <#900048923534688286>
+read the rules and integrate the roles that might interest you <#900068827595956234> 
+
+If you need help making your 3.5k clan points, the detail ||of our political prisoner Kaseiya 😏|| pinned in <#900384566802530314> might be able to help.
 
 Enjoy your visit, if you have any questions don't hesitate.
 
-Looking forward to see you participate in our farm ☺️""",
+Looking forward to seeing you at our farm ☺️""",
             color=couleur().bleu)
     return embed.set_image(url= await image_bienvenue_en(bot,member))
 
