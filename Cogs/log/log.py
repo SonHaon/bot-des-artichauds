@@ -10,6 +10,7 @@ import os
 from io import BytesIO
 from PIL import Image,ImageFont,ImageDraw,ImageOps
 import logging
+import json
 
 from ..fonction import log,trad
 logger = logging.getLogger('discord.artichauds')
@@ -21,5 +22,33 @@ class logs(commands.Cog):
 
     @tasks.loop(seconds=15)
     async def logs(self):
-        channel = self.bot.get_channel(1015569619739746374)
-        await channel.send('test')
+        channel=self.bot.get_channel(1165260732292661268)
+
+        with open("information.json","r") as file:
+            dico=json.load(file)
+            last_log=dico["last_log"]
+
+        with open("../botarchauds.log","r") as file:
+            lignes=file.readlines()
+        lignes.reverse()
+
+        with open("information.json","w") as file:
+            file.write(json.dumps(dico))
+            
+        if last_log==lignes[0]:
+            return
+
+        envoi=[]
+        for ligne in lignes:
+            if ligne != last_log:
+                envoi.append(ligne)
+            else:
+                break
+
+        envoi.reverse()
+        await channel.send(f'```{"".join(envoi)}```')
+        dico["last_log"]=lignes[0]
+        
+        
+
+
