@@ -17,7 +17,9 @@ logger = logging.getLogger('discord.artichauds')
 class logs(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
+        self.logs.start()
 
     @tasks.loop(seconds=15)
     async def logs(self):
-        self.bot.channel.logs.send("test")
+        channel = self.bot.get_channel(1015569619739746374)
+        await channel.send('test')
