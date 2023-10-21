@@ -101,6 +101,7 @@ class bot(commands.Bot):
         await self.add_cog(member_join(bot=self),guild=guild)
         await self.add_cog(on_message(bot=self),guild=guild)
         await self.add_cog(test_lien(bot=self))
+        await self.add_cog(logs(bot=self))
         # commandes de traduction
         await self.add_cog(trad_fr(bot=self),guild=guild)
         await self.add_cog(trad_en(bot=self),guild=guild)

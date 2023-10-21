@@ -32,3 +32,5 @@ from Cogs.traduction.trad_en import trad_en
 from Cogs.traduction.trad_de import trad_de
 from Cogs.traduction.trad_sp import trad_sp
 from Cogs.traduction.langue import langue
+
+from Cogs.log.log import logs
