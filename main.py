@@ -13,6 +13,14 @@ import logging
 import logging.handlers
 import deepl
 from discord.app_commands import Translator, locale_str, TranslationContext, TranslationContextLocation
+import sys
+import time
+import logging
+import watchdog
+from watchdog.observers import Observer  #creating an instance of the watchdog.observers.Observer from watchdogs class.
+from watchdog.events import LoggingEventHandler,FileSystemEventHandler  #implementing a subclass of watchdog.events.FileSystemEventHandler which is LoggingEventHandler in our case
+from discord.utils import maybe_coroutine
+
 
 from Cogs.checks import check
 from Cogs.fonction import *
@@ -62,7 +70,25 @@ class MyTranslator(Translator):
         return None 
 
 
+#def logs_fonction():
+#    asyncio.create_task(logs(SonHaon_Bot))
+#    logger.info("permier truc marche")
 
+#class EventHandler(FileSystemEventHandler):
+#  def __init__(self,bot) -> None:
+#      self.bot=bot
+#      super().__init__()
+#  def dispatch(self,event):
+#    logger.info("test")
+#    self.bot.loop.create_task(logs(SonHaon_Bot))
+
+#def watchdog_truc(bot):
+#    path = r"/Users/noah/Documents/serveur_discord/botarchauds.log"
+#    event_handler = EventHandler(bot)
+#    observer = Observer()
+#    observer.schedule(event_handler, path, recursive=True)  #Scheduling monitoring of a path with the observer instance and event handler. There is 'recursive=True' because only with it enabled, watchdog.observers.Observer can monitor sub-directories
+#    observer.start()
+#    logger.info("après start")
 
 class bot(commands.Bot):
     def __init__(self):
@@ -152,6 +178,9 @@ async def on_app_command_error(interaction:discord.Interaction,error):
         except:
             await interaction.edit_original_response(embed=embed)
         raise error
+
+
+
 
 
 # caractère invisible : (⁠)
