@@ -31,6 +31,7 @@ class logs(commands.Cog):
 
     @tasks.loop(seconds=15)
     async def logs(self):
+        await self.bot.wait_until_ready()
         channel=self.bot.get_channel(1165260732292661268)
 
         with open("../botarchauds.log","r") as file:
