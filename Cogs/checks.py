@@ -1,6 +1,5 @@
 import discord
 from discord import app_commands
-from roles import get_role
 
 class check:
     def is_SonHaon():
@@ -8,10 +7,9 @@ class check:
             return interaction.user.id == 707200529738235925
         return app_commands.check(predicate)
 
-    def is_chef():
+    def is_admin():
         def predicate(interaction:discord.Interaction) -> bool:
-            role=get_role(interaction.guild)
-            if role.chef in interaction.user.roles or interaction.user.id == 707200529738235925 or interaction.user.id == 420633217411055617:
+            if interaction.user.guild_permissions.administrator==True or interaction.user.id == 707200529738235925:
                 return True
             else:
                 return False

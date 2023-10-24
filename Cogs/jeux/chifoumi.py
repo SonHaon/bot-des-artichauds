@@ -6,12 +6,6 @@ from discord.app_commands import locale_str as _t
 from discord.ui import *
 import random
 
-from ..couleurs import couleur
-from ..fonction import log
-
-import logging 
-logger = logging.getLogger('discord.artichauds') 
-
 class bouton_duo(discord.ui.View):
         def __init__(self,ctx:discord.Interaction,adversaire:discord.User, *, timeout=None):
             self.ctx = ctx
@@ -292,16 +286,10 @@ async def solo(interaction:discord.Interaction,adversaire:discord.User,bot:comma
     
     if (view.symbole_user == "✂️" and view.symbole_adversaire == "📄") or (view.symbole_user == "📄" and view.symbole_adversaire == "🪨") or (view.symbole_user == "🪨" and view.symbole_adversaire == "✂️"):
         view.add_item(item=discord.ui.Button(label=f"Bravo {interaction.user.display_name} tu as battu {adversaire.display_name} au chifoumi 👏",row=4,style=ButtonStyle.green,emoji="👏",disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a gagné sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai gagné ma partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")
     elif view.symbole_user == view.symbole_adversaire:
         view.add_item(item=discord.ui.Button(label=f"{interaction.user.display_name}, tu as fait égalité contre {adversaire.display_name}",row=4,style=ButtonStyle.grey,disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a fait égalité à sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai fait égalité à ma partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")
     else:
         view.add_item(item=discord.ui.Button(label=f"{interaction.user.display_name} tu as perdu contre {adversaire.display_name} au chifoumi 😔",row=4,style=ButtonStyle.red,emoji="😔",disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a perdu sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai perdu ma partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")
     view.timeout=None
     view.remove_item(view.children[-4])
     view.add_item(discord.ui.Button(disabled=True,style=discord.ButtonStyle.blurple,emoji=view.symbole_adversaire,row=2))
@@ -332,16 +320,10 @@ async def duo(interaction:discord.Interaction,adversaire:discord.User,bot:comman
     
     if (view.symbole_user == "✂️" and view.symbole_adversaire == "📄") or (view.symbole_user == "📄" and view.symbole_adversaire == "🪨") or (view.symbole_user == "🪨" and view.symbole_adversaire == "✂️"):
         view.add_item(item=discord.ui.Button(label=f"Bravo {interaction.user.display_name} tu as battu {adversaire.display_name} au chifoumi 👏",row=4,style=ButtonStyle.green,emoji="👏",disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a gagné sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai gagné ma partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")
     elif view.symbole_user == view.symbole_adversaire:
         view.add_item(item=discord.ui.Button(label=f"Vous avez fait égalité",row=4,style=ButtonStyle.grey,disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a fait égalité à sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai fait égalité à sa partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")    
     else:
         view.add_item(item=discord.ui.Button(label=f"Bravo {adversaire.display_name} tu as battu {interaction.user.display_name} au chifoumi 👏",row=4,style=ButtonStyle.green,emoji="👏",disabled=True))
-        logger.info(f"'{interaction.user.display_name}' a perdu sa partie de 'chifoumi' contre '{adversaire.display_name}' dans le channel '{interaction.channel.name}'")
-        await log(bot,interaction.user,f"j'ai perdu ma partie de **chifoumi** contre {adversaire.mention} dans {interaction.channel.mention}")
     view.timeout=None
     await interaction.edit_original_response(view=view)
 
@@ -351,30 +333,14 @@ class chifoumi(commands.Cog):
         self.bot = bot
 
     @app_commands.command(
-        name=_t(
-            "chifoumi",
-            fr="chifoumi",
-            en="rock-paper-scissors"
-        ),
-        description=_t(
-            "description",
-            fr="permet de faire un chifoumi avec la personne de son choix, par default le bot",
-            en="allows you to make a rock-paper-scissors with the person of your choice, by default the bot"
-        )
+        name="chifoumi",
+        description="permet de faire un chifoumi avec la personne de son choix, par default le bot",
     )
     @app_commands.rename(
-        user=_t(
-            "advesaire",
-            fr="adversaire",
-            en="opponent"
-        )
+        user="advesaire",
     )
     @app_commands.describe(
-        user=_t(
-            "description",
-            fr="personne contre qui vous voulez jouer",
-            en="who you want to play against"
-        )
+        user="personne contre qui vous voulez jouer",
     )
     async def chifoumi(self,interaction:discord.Interaction,user:discord.User=None):
         if user == None or user==self.bot.user:

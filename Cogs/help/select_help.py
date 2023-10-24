@@ -6,7 +6,7 @@ from discord import  app_commands,ButtonStyle
 from discord.ui import * 
 import random 
 
-from ..couleurs import couleur 
+
 from .embed_help import *
 
 class Select_jeux(discord.ui.Select):

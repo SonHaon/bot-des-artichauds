@@ -5,7 +5,6 @@ from discord import  app_commands,ButtonStyle
 from discord.ui import * 
 import random 
 
-from ..couleurs import couleur 
 
 embeds_jeux = [
 discord.Embed(title="**__Menu d'aide pour les commandes de jeux__**",description=
