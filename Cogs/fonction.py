@@ -12,12 +12,24 @@ class fonction:
                 if message.id == id:
                     return message
 
+    def circular_crowp(self,img):
+        img=img.convert("RGB")
+        npImage=np.array(img)
+        h,w=img.size
+        alpha = Image.new('L', img.size,0)
+        draw = ImageDraw.Draw(alpha)
+        draw.pieslice([0,0,h,w],0,360,fill=255)
+        npAlpha=np.array(alpha)
+        npImage=np.dstack((npImage,npAlpha))
+        return Image.fromarray(npImage)
+
     def a_role(self,user,role_search):
         roles = user.roles
         for role in roles:
             if role.name == role_search.name:
                 return True
         return False
+
 
     async def create_webhook(self,channel:discord.TextChannel,user:discord.Member):
         avatar=await user.display_avatar.read()
@@ -36,3 +48,19 @@ class fonction:
 
     def date_now(self):
         return f"<t:{round(datetime.now().timestamp())}:f> **||**"
+
+    async def image_bienvenue(self,bot,member:discord.Member,message:str):
+        user_pp_url = member.display_avatar.replace(size=256)
+        user_pp_url = BytesIO(await user_pp_url.read())
+        user_pp = Image.open(user_pp_url)
+        user_pp = self.circular_crowp(user_pp)
+        img = Image.open("/Users/noah/Documents/serveur_discord/bot-des-artichauds/joinimg.png")
+        draw = ImageDraw.Draw(img)
+        font= ImageFont.truetype("/Users/noah/Documents/serveur_discord/bot-des-artichauds/Quicksand_Bold.otf",50)
+        draw.multiline_text((650,150),message, (255,255,255), anchor="mm",font=font,align="center")
+        img.paste(user_pp, box=(22,22),mask=user_pp)
+        img.save("/Users/noah/Documents/serveur_discord/bot-des-artichauds/image_fr.png")
+        channel_image=bot.get_channel(1009137943077724240)
+        message = await channel_image.send(file=discord.File("/Users/noah/Documents/serveur_discord/bot-des-artichauds/image_fr.png"))
+        return message.attachments[0].url
+        
