@@ -7,7 +7,7 @@ import os
 import asyncio
 import json
 
-path=os.path.dirname(os.path.abspath(__file__))+"/info"
+path=os.path.dirname(os.path.abspath(__file__))
 
 class image():
     async def create(self,bot,member,etat):
