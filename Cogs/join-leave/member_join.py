@@ -9,8 +9,8 @@ from PIL import Image, ImageDraw,ImageFont
 import os
 import json
 
-from .fonction import embed
-path=os.path.dirname(os.path.abspath(__file__))
+from fonction import embed
+
 
 
 class member_join(commands.Cog): 
@@ -19,8 +19,8 @@ class member_join(commands.Cog):
 
     @commands.Cog.listener(name="on_member_join")
     async def on_member_join(self,member:discord.Member):
-        with open(f"{path}/info.json") as file:
+        with open("info.json") as file:
             channel_id=json.load(file)["channel_arrivee"]
         channel = member.guild.get_channel(channel_id)
-        embeds = await embed().create(self.bot,member,"arrivee")
+        embeds = await embed(self.bot,member,"arrivee")
         await channel.send(member.mention,embed=embeds)
