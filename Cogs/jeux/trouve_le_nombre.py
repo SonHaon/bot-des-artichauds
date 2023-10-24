@@ -6,26 +6,40 @@ from discord.app_commands import locale_str as _t
 from discord.ui import * 
 import random 
 
+from ..couleurs import couleur 
+from ..fonction import log
+
+import logging 
+logger = logging.getLogger('discord.artichauds') 
+
 class trouve_le_nombre(commands.Cog):
     def __init__(self,bot:commands.Bot) -> None:
         self.bot = bot
     
     @app_commands.command(
-        name="trouve_le_nombre",
-        description="j'ai eu la flemme de faire une description"
+        name=_t(
+            "trouve_le_nombre",
+            fr="trouve_le_nombre",
+            en="guess_the_number"
+        ),
+        description=_t(
+            "description",
+            fr="j'ai eu la flemme de faire une description",
+            en="I was too lazy to write a description"
+        )
     )
     @app_commands.choices(tentative= [
-        app_commands.Choice(name="trop trop trop simple (infini essais)",value="999"),
-        app_commands.Choice(name="très facile (8 essais)",value="8"),
-        app_commands.Choice(name="facile (7 essais)",value="7"),
-        app_commands.Choice(name="normal (6 essais)",value="6"),
-        app_commands.Choice(name="difficile (5 essais)",value="5"),
-        app_commands.Choice(name="très difficile (4 essais)",value="4"),
-        app_commands.Choice(name="impossible (3 essais)",value="3"),
-        app_commands.Choice(name="1 essai",value="1")
+        app_commands.Choice(name=_t("1",fr="trop trop trop simple (infini essais)",en="too much too simple (infinite attempts)"),value="999"),
+        app_commands.Choice(name=_t("2",fr="très facile (8 essais)",en="very easy (8 attemps)"),value="8"),
+        app_commands.Choice(name=_t("3",fr="facile (7 essais)",en="easy (7 attemps)"),value="7"),
+        app_commands.Choice(name=_t("4",fr="normal (6 essais)",en="normal (6 attemps)"),value="6"),
+        app_commands.Choice(name=_t("5",fr="difficile (5 essais)",en="hard (5 attemps)"),value="5"),
+        app_commands.Choice(name=_t("6",fr="très difficile (4 essais)",en="very hard (4 attemps)"),value="4"),
+        app_commands.Choice(name=_t("7",fr="impossible (3 essais)",en="impossible (3 attemps)"),value="3"),
+        app_commands.Choice(name=_t("8",fr="1 essai",en="1 try "),value="1")
     ])
-    @app_commands.rename(tentative="difficulté")
-    @app_commands.describe(tentative="difficulté du jeu")
+    @app_commands.rename(tentative=_t("name",fr="difficulté",en="difficulty"))
+    @app_commands.describe(tentative=_t("description",fr="difficulté du jeu",en="game difficulty"))
     async def trouve_le_nombre(self,interaction:discord.Interaction,tentative:str="6"):
         tentative=int(tentative)
         nombre = random.randint(1,100)
@@ -36,7 +50,7 @@ class trouve_le_nombre(commands.Cog):
         embed:discord.Embed = discord.Embed(
             title="**__Trouve le nombre__**",
             description=f"j'ai choisi un nombre entre 1 et 100 tu as {tentative} essai pour le trouver",
-            color= 0x2f3136
+            color= couleur.gris
         )
         embed.set_author(name=interaction.user.display_name,icon_url=interaction.user.display_avatar.url)
         embed.set_footer(text=interaction.guild.name,icon_url=interaction.guild.icon.url)
@@ -89,14 +103,18 @@ class trouve_le_nombre(commands.Cog):
         
         if win:
             résultat.append(str(f"**{loop+1})** Bravo vous avez trouvé le nombre que j'avais choisi\nLe nombre était : **__{nombre}__**"))
-            embed = discord.Embed(title=embed.title,description=embed.description,color=0x00FF00)
+            embed = discord.Embed(title=embed.title,description=embed.description,color=couleur.full_vert)
             embed.add_field(name="nombre proposé :", value=", ".join(nombre_proposé),inline=False)
             embed.add_field(name="résultat :",value="\n".join(résultat),inline=False)
             embed.add_field(name="nombre d'éssais :",value = f"{loop-tentative} essais")
+            logger.info(f"'{interaction.user.display_name}' a gagné sa partie de 'trouve_le_nombre' dans le channel '{interaction.channel.name}', le nombre était '{nombre}'")
+            await log(self.bot,interaction.user,f"j'ai gagné ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
         elif not(win):
-            embed = discord.Embed(title=embed.title,description=embed.description,color=0xFF0000)
+            embed = discord.Embed(title=embed.title,description=embed.description,color=couleur.full_rouge)
             résultat.append(str(f"**{loop+1})** Dommage vous n'avez pas trouvé le nombre que j'avais choisi.\nLe nombre était : **__{nombre}__**"))
             embed.add_field(name="nombre proposé :", value=", ".join(nombre_proposé),inline=False)
             embed.add_field(name="résultat :",value="\n".join(résultat),inline=False)
+            logger.info(f"'{interaction.user.display_name}' a perdu sa partie de 'trouve_le_nombre' dans le channel '{interaction.channel.name}', le nombre était '{nombre}'")
+            await log(self.bot,interaction.user,f"j'ai perdu ma partie de **trouve_le_nombre** dans {interaction.channel.mention}, le nombre était **{nombre}**")
         await interaction.edit_original_response(embed=embed)
 
