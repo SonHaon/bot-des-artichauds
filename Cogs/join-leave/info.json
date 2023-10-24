@@ -1,0 +1,8 @@
+{
+    "message_arrivee":"Bienvenue {nom} \n \nsur mon serveur",
+    "message_depart":"Bienvenue {nom} \n \nsur mon serveur",
+    "titre_arrivee":"Oh un nouveau membre !",
+    "titre_depart":"Au revoir !",
+    "channel_arrivee":934114546304553012,
+    "channel_depart":934114546304553012
+}
