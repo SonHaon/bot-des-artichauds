@@ -10,7 +10,7 @@ import os
 import json
 
 from .fonction import embed
-path=os.path.dirname(os.path.abspath(__file__))
+path=os.path.dirname(os.path.abspath(__file__))+"/info"
 
 
 class member_join(commands.Cog): 

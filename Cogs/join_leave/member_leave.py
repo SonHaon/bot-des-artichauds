@@ -8,7 +8,7 @@ import json
 import os
 
 from .fonction import embed
-path=os.path.dirname(os.path.abspath(__file__))
+path=os.path.dirname(os.path.abspath(__file__))+"/info"
 
 class member_leave(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
