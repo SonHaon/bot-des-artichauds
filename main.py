@@ -16,9 +16,6 @@ from discord.app_commands import Translator, locale_str, TranslationContext, Tra
 import sys
 import time
 import logging
-import watchdog
-from watchdog.observers import Observer  #creating an instance of the watchdog.observers.Observer from watchdogs class.
-from watchdog.events import LoggingEventHandler,FileSystemEventHandler  #implementing a subclass of watchdog.events.FileSystemEventHandler which is LoggingEventHandler in our case
 from discord.utils import maybe_coroutine
 
 
