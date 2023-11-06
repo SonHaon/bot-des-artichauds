@@ -6,6 +6,8 @@ from io import BytesIO
 import aiohttp
 from roles import get_role
 from channels import get_channel
+import os
+
 async def recup_message_by_id(ctx:discord.Interaction, id:int) -> discord.Message:
     for channel in ctx.guild.text_channels:
         channel:discord.TextChannel
@@ -70,37 +72,7 @@ async def log(bot,user:discord.User,message:str):
     await webhook.send(f"{date_now()} {message}",username=user.display_name,avatar_url=user.display_avatar.url)
 
 
-async def image_bienvenue_fr(bot,member:discord.Member):
-    user_pp_url = member.display_avatar.replace(size=256)
-    user_pp_url = BytesIO(await user_pp_url.read())
-    user_pp = Image.open(user_pp_url)
-    user_pp = circular_crowp(user_pp)
-    img = Image.open("/home/sonhaon/bot-des-artichauds/joinimg.png")
-    draw = ImageDraw.Draw(img)
-    font= ImageFont.truetype("/home/sonhaon/bot-des-artichauds/Quicksand_Bold.otf",50)
-    draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\ndans le jardin des\n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
-    img.paste(user_pp, box=(22,22),mask=user_pp)
-    img.save("/home/sonhaon/bot-des-artichauds/image_fr.png")
-    channel_image=bot.get_channel(1009137943077724240)
-    message = await channel_image.send(file=discord.File("/home/sonhaon/bot-des-artichauds/image_fr.png"))
-    return message.attachments[0].url
-    
 
-
-async def image_bienvenue_en(bot,member:discord.Member):
-    user_pp_url = member.display_avatar.replace(size=256)
-    user_pp_url = BytesIO(await user_pp_url.read())
-    user_pp = Image.open(user_pp_url)
-    user_pp = circular_crowp(user_pp)
-    img = Image.open("/home/sonhaon/bot-des-artichauds/joinimg.png")
-    draw = ImageDraw.Draw(img)
-    font= ImageFont.truetype("/home/sonhaon/bot-des-artichauds/Quicksand_Bold.otf",50)
-    draw.multiline_text((650,150),f"Welcome {member.display_name}\n\nin the garden of\n\n elite artichokes", (255,255,255), anchor="mm",font=font,align="center")
-    img.paste(user_pp, box=(22,22),mask=user_pp)
-    img.save("/home/sonhaon/bot-des-artichauds/image_en.png")
-    channel_image=bot.get_channel(1009137943077724240)
-    message = await channel_image.send(file=discord.File("/home/sonhaon/bot-des-artichauds/image_en.png"))
-    return message.attachments[0].url
 
 async def trad(bot,trad,locale):
     return await bot.translate(None,trad,locale,None)

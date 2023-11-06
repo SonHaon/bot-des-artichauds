@@ -22,8 +22,6 @@ from Cogs.bot.reboot import reboot
 from Cogs.bot.raspberry_reboot import raspberry_reboot
 
 from Cogs.event.on_timeout import timeout
-from Cogs.event.member_join import member_join
-from Cogs.event.member_leave import member_leave
 from Cogs.event.on_message import on_message
 from Cogs.event.test_lien import test_lien
 
@@ -34,3 +32,6 @@ from Cogs.traduction.trad_sp import trad_sp
 from Cogs.traduction.langue import langue
 
 from Cogs.log.log import logs
+
+from Cogs.join_leave.member_join import member_join
+from Cogs.join_leave.member_leave import member_leave

@@ -11,7 +11,10 @@ import random
 import logging
 logger = logging.getLogger('discord.artichauds') 
 from ..couleurs import couleur 
-from ..fonction import log,image_bienvenue_fr,image_bienvenue_en
+from ..fonction import log
+from .fonction import image_bienvenue_fr,image_bienvenue_en
+
+path=os.path.dirname(os.path.abspath(__file__))+"/info"
 
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
@@ -90,7 +93,7 @@ class bouton_trad(discord.ui.View):
         embed = await embed_en(self.bot,interaction.message.mentions[0])
         await interaction.response.edit_message(embeds=[interaction.message.embeds[0],embed],view=None)
         await asyncio.sleep(2)
-        os.remove("/home/sonhaon/bot-des-artichauds/image_en.png")
+        os.remove(f"{path}/image_en.png")
 
 
 
@@ -109,14 +112,15 @@ class member_join(commands.Cog):
     @commands.Cog.listener(name="on_member_join")
     async def timeout(self,member:discord.Member):
         channel = member.guild.get_channel(900046546656182324)
+        embed = await embed_fr(self.bot,member)
         if member.id == 382930544385851392:
             await channel.send(f"{member.mention} vient encore réparer <@889450194935099412> qui marche pas")
             return
         elif member.id == 931236217465471066:
             channel = member.guild.get_channel(1007578769722179657)
-        embed = await embed_fr(self.bot,member)
+            embed.description=""
         await channel.send(member.mention,embed=embed,view=bouton_trad(self.bot))
         await asyncio.sleep(2)
-        os.remove("/home/sonhaon/bot-des-artichauds/image_fr.png")
+        os.remove(f"{path}/image_fr.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
         await log(self.bot,member,f"{member.mention} a rejoind le serveur des artichauds")
