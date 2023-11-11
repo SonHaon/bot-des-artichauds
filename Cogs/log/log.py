@@ -15,9 +15,7 @@ import json
 from ..fonction import log,trad
 logger = logging.getLogger('discord.artichauds')
 
-#async def logs(bot):
-#    channel=bot.get_channel(1165260732292661268)
-#    await channel.send("nouveau log")
+path=os.path.dirname(os.path.abspath(__file__))
 
 
 
@@ -38,14 +36,14 @@ class logs(commands.Cog):
             lignes=file.readlines()
         lignes.reverse()
 
-        with open("information.json","r") as file:
+        with open(f"{path}/info.json","r") as file:
             dico=json.load(file)
             last_log=dico["last_log"]
 
         dico["last_log"]=lignes[0]
         
 
-        with open("information.json","w") as file:
+        with open(f"{path}/info.json","w") as file:
             file.write(json.dumps(dico))
 
         if last_log==lignes[0]:
@@ -59,5 +57,11 @@ class logs(commands.Cog):
                 break
 
         envoi.reverse()
-        await channel.send(f'```{"".join(envoi)}```')
+        content="".join(envoi)
+        message=await channel.fetch_message(channel.last_message_id)
+
+        if len(message.content)+len(content)>1999 or message.author.id!=self.bot.user.id:
+            await channel.send(f'```{content}```')
+        else:
+            await message.edit(content=f"{message.content[:-3]}{content}```")
         
