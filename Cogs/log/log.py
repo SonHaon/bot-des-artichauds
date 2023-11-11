@@ -30,7 +30,6 @@ class logs(commands.Cog):
     @tasks.loop(seconds=15)
     async def logs(self):
         await self.bot.wait_until_ready()
-        channel=self.bot.get_channel(1165260732292661268)
 
         with open("../botarchauds.log","r") as file:
             lignes=file.readlines()
@@ -38,7 +37,8 @@ class logs(commands.Cog):
 
         with open(f"{path}/info.json","r") as file:
             dico=json.load(file)
-            last_log=dico["last_log"]
+        last_log=dico["last_log"]
+        channel=self.bot.get_channel(dico["channel"])
 
         dico["last_log"]=lignes[0]
         
