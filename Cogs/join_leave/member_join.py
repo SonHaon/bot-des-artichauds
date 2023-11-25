@@ -119,7 +119,7 @@ class member_join(commands.Cog):
         elif member.id == 931236217465471066:
             channel = member.guild.get_channel(1007578769722179657)
             embed.description=""
-        await channel.send(member.mention,embed=embed,view=bouton_trad(self.bot))
+        await channel.send(member.mention+self.bot.member.jardinier,embed=embed,view=bouton_trad(self.bot))
         await asyncio.sleep(2)
         os.remove(f"{path}/image_fr.png")
         logger.info(f"'{member.display_name}' a rejoind le serveur")
