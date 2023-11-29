@@ -34,7 +34,8 @@ def a_role(user,role_search):
     return False
 
 def message_auto_role(ctx:discord.Interaction):
-    return f"""> **{len(get_role(ctx.guild).duo.members)}** jardiniers possède le role {get_role(ctx.guild).duo.mention}
+    return f"""> **{len(get_role(ctx.guild).event.members)}** jardiniers possède le role {get_role(ctx.guild).event.mention}
+    > **{len(get_role(ctx.guild).duo.members)}** jardiniers possède le role {get_role(ctx.guild).duo.mention}
     > **{len(get_role(ctx.guild).duel.members)}** jardiniers possède le role {get_role(ctx.guild).duel.mention}
     > **{len(get_role(ctx.guild).ios.members)}** jardiniers possède le role {get_role(ctx.guild).ios.mention}
     > **{len(get_role(ctx.guild).android.members)}** jardiniers possède le role {get_role(ctx.guild).android.mention}

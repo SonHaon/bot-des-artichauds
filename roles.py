@@ -15,3 +15,4 @@ class get_role:
         self.ios:discord.Role = guild.get_role(948914689927155764)
         self.alors:discord.Role = guild.get_role(1000491495117312100)
         self.test:discord.Role = guild.get_role(957631055848939600)
+        self.event:discord.Role = guild.get_role(1179199375608660060)
