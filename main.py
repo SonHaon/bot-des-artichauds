@@ -22,7 +22,7 @@ from discord.utils import maybe_coroutine
 from Cogs.checks import check
 from Cogs.fonction import *
 from Cogs.couleurs import couleur
-from Cogs.components import bouton_sondage,ban_modal, boutons_auto_role
+from Cogs.components import bouton_sondage,ban_modal, ancien_boutons_auto_role
 from roles import get_role
 from users import get_user
 from channels import get_channel
@@ -114,6 +114,9 @@ class bot(commands.Bot):
         await self.add_cog(trad_sp(bot=self),guild=guild)
         await self.add_cog(langue(bot=self),guild=guild)
 
+        # système d'auto-role
+        await self.add_cog(auto_role(bot=self),guild=guild)
+
         await self.tree.sync(guild=guild)
         await self.tree.sync()
 
@@ -125,7 +128,8 @@ class bot(commands.Bot):
         self.member = get_user(bot=self)
         self.channel = get_channel(bot=self)
         self.artichauds = self.get_guild(900046546656182322)
-        self.add_view(view=boutons_auto_role(guild=self.artichauds),message_id=1093050764173267016)
+        self.add_view(view=ancien_boutons_auto_role(guild=self.artichauds),message_id=1093050764173267016)
+        self.add_view(view=boutons_auto_role())
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="/help"))
         logger.info(f"{self.user.name} est allumé")
         await log(self,self.user,"j'ai démarrer")

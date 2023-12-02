@@ -38,7 +38,7 @@ class ban_modal(Modal):
 
 
 
-class boutons_auto_role(discord.ui.View):
+class ancien_boutons_auto_role(discord.ui.View):
     def __init__(self,guild:discord.Guild):
         self.roles = get_role(guild)
         super().__init__(timeout=None)

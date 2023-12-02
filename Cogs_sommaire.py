@@ -35,3 +35,6 @@ from Cogs.log.log import logs
 
 from Cogs.join_leave.member_join import member_join
 from Cogs.join_leave.member_leave import member_leave
+
+from Cogs.auto_role.config import auto_role
+from Cogs.auto_role.component import boutons_auto_role
