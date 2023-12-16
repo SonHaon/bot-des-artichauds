@@ -64,7 +64,7 @@ class say(commands.Cog):
         if channel == None:
             channel:discord.TextChannel = interaction.channel
         if reply != None:
-            message:discord.Message=recup_message_by_id(interaction,int(reply))
+            message:discord.Message=await recup_message_by_id(interaction,int(reply))
             if message!=None:
                 if message.channel==channel:
                     message.reply(content=content,file=file)
