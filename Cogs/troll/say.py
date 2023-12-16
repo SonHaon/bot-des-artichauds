@@ -66,8 +66,12 @@ class say(commands.Cog):
         if reply != None:
             message:discord.Message=await recup_message_by_id(interaction,int(reply))
             if message!=None:
+                logger.info("message found")
                 if message.channel==channel:
-                    message.reply(content=content,file=file)
+                    logger.info("channel check true")
+                    await message.reply(content=content,file=file)
+                    await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention} en réponse au [message]({message.jump_url})")
+                    return
                 else:
                     await interaction.edit_original_response(content=f"le message n'est pas dans le channel choisi (ou actuel si aucun channel n'est choisi)")
             else:
