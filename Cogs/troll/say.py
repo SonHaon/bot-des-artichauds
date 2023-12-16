@@ -40,6 +40,16 @@ class say(commands.Cog):
             "2",
             fr="fichier",
             en="file"
+        ),
+        reply_id=_t(
+            "3",
+            fr="réponse_id",
+            en="reply_id"
+        ),
+        reply_mention=_t(
+            "4",
+            fr="mention_réponse",
+            en="reply_mention"
         )
     )
     @app_commands.describe(
@@ -57,9 +67,19 @@ class say(commands.Cog):
             "description",
             fr="channel où le message va être envoyé",
             en="channel where message will be sent"
+        ),
+        reply_id=_t(
+            "description",
+            fr="l'id du message auquel le bot doit répondre",
+            en="the id of the message to which the bot should reply"
+        ),
+        reply_mention=_t(
+            "description",
+            fr="si le message mentionne la personne à laquelle on répond (ne fait rien si le bot ne répond pas à un message)",
+            en="if the message mentions the person you're replying to (does nothing if the bot doesn't reply to a message)"
         )
     )
-    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply_id:str=None):
+    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply_id:str=None,reply_mention:bool=False):
         await interaction.response.defer(ephemeral=True)
         if channel == None:
             channel:discord.TextChannel = interaction.channel
@@ -69,7 +89,7 @@ class say(commands.Cog):
                 logger.info("message found")
                 if message.channel==channel:
                     logger.info("channel check true")
-                    await message.reply(content=content,file=file,silent=True)
+                    await message.reply(content=content,file=file,mention_author=reply_mention)
                     await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention} en réponse au [message]({message.jump_url})")
                     return
                 else:
