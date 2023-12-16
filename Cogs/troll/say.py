@@ -8,7 +8,7 @@ import random
 
 from ..couleurs import couleur 
 from ..checks import check
-from ..fonction import log
+from ..fonction import log,recup_message_by_id
 
 import logging 
 logger = logging.getLogger('discord.artichauds') 
@@ -59,10 +59,20 @@ class say(commands.Cog):
             en="channel where message will be sent"
         )
     )
-    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None):
+    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply:int=None):
         await interaction.response.defer(ephemeral=True)
         if channel == None:
             channel:discord.TextChannel = interaction.channel
+        if reply != None:
+            message:discord.Message=recup_message_by_id(interaction,reply)
+            if message!=None:
+                if message.channel==channel:
+                    message.reply(content=content,file=file)
+                else:
+                    await interaction.edit_original_response(content=f"le message n'est pas dans le channel choisi (ou actuel si aucun channel n'est choisi)")
+            else:
+                await interaction.edit_original_response(content=f"le message n'existe pas ou n'a pas pu être trouvé")
+
         await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention}")
         await channel.send(content=content,file=file)
         logger.info(f"'{interaction.user.display_name}' a fait envoyé '{content}' à {self.bot.user.display_name} dans le channel '{channel.name}'")
