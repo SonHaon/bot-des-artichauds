@@ -59,12 +59,12 @@ class say(commands.Cog):
             en="channel where message will be sent"
         )
     )
-    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply:int=None):
+    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply:str=None):
         await interaction.response.defer(ephemeral=True)
         if channel == None:
             channel:discord.TextChannel = interaction.channel
         if reply != None:
-            message:discord.Message=recup_message_by_id(interaction,reply)
+            message:discord.Message=recup_message_by_id(interaction,int(reply))
             if message!=None:
                 if message.channel==channel:
                     message.reply(content=content,file=file)
