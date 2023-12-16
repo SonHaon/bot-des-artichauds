@@ -59,17 +59,17 @@ class say(commands.Cog):
             en="channel where message will be sent"
         )
     )
-    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply:str=None):
+    async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply_id:str=None):
         await interaction.response.defer(ephemeral=True)
         if channel == None:
             channel:discord.TextChannel = interaction.channel
-        if reply != None:
-            message:discord.Message=await recup_message_by_id(interaction,int(reply))
+        if reply_id != None:
+            message:discord.Message=await recup_message_by_id(interaction,int(reply_id))
             if message!=None:
                 logger.info("message found")
                 if message.channel==channel:
                     logger.info("channel check true")
-                    await message.reply(content=content,file=file)
+                    await message.reply(content=content,file=file,silent=True)
                     await interaction.edit_original_response(content=f"le message `{content}` à bien été envoyé dans {channel.mention} en réponse au [message]({message.jump_url})")
                     return
                 else:
