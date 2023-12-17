@@ -75,8 +75,8 @@ class say(commands.Cog):
         ),
         reply_mention=_t(
             "description",
-            fr="si le message mentionne la personne à laquelle on répond (ne fait rien si le bot ne répond pas à un message)",
-            en="if the message mentions the person you're replying to (does nothing if the bot doesn't reply to a message)"
+            fr="si le message mentionne la personne à laquelle on répond",
+            en="if the message mentions the person you're replying to"
         )
     )
     async def say(self,interaction:discord.Interaction,content:str,channel:discord.TextChannel=None,file:discord.Attachment=None,reply_id:str=None,reply_mention:bool=False):
