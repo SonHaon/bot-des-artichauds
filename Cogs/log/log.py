@@ -61,7 +61,19 @@ class logs(commands.Cog):
         message=await channel.fetch_message(channel.last_message_id)
 
         if len(message.content)+len(content)>1999 or message.author.id!=self.bot.user.id:
-            await channel.send(f'```{content}```')
+            if len(content)<1999:
+                await channel.send(f'```{content}```')
+            else:
+                nb_mess=len(content)//2000 +2
+                messages=[[] for k in range(nb_mess)]
+                mess_ligne=len(envoi)//nb_mess+1
+                ligne2=0
+                for ligne in envoi:
+                    messages[ligne2].append(ligne)
+                    if len(messages[ligne2])==mess_ligne:
+                        ligne2+=1
+                for content in messages:
+                    await channel.send(f'```{"".join(content)}```')
         else:
             await message.edit(content=f"{message.content[:-3]}{content}```")
         
