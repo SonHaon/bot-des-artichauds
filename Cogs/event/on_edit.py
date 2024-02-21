@@ -18,28 +18,28 @@ class on_message_edit(commands.Cog):
         self.bot = bot 
 
     @commands.Cog.listener(name="on_message_edit")
-    async def on_message_edit(self, message:discord.Message):
-        if message.content.startswith("EN "):
-            content = translator.translate_text(message.content[3:],target_lang="EN-US")
-            webhook = await has_webhook(message.channel,message.author)
-            await message.delete()
-            await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
-            logger.info(f"{message.author.display_name} a traduit un message en anglais dans {message.channel.name}")
-        if message.content.startswith("FR "):
-            content = translator.translate_text(message.content[3:],target_lang="FR")
-            webhook = await has_webhook(message.channel,message.author)
-            await message.delete()
-            await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
-            logger.info(f"{message.author.display_name} a traduit un message en francais dans {message.channel.name}")
-        if message.content.startswith("DE "):
-            content = translator.translate_text(message.content[3:],target_lang="DE")
-            webhook = await has_webhook(message.channel,message.author)
-            await message.delete()
-            await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
-            logger.info(f"{message.author.display_name} a traduit un message en allemand dans {message.channel.name}")
-        if message.content.startswith("SP ") or message.content.startswith("ES "):
-            content = translator.translate_text(message.content[3:],target_lang="ES")
-            webhook = await has_webhook(message.channel,message.author)
-            await message.delete()
-            await webhook.send(content=f"*{message.content[3:]}*\n\n{content}")
-            logger.info(f"{message.author.display_name} a traduit un message en espagnol dans {message.channel.name}")
+    async def on_message_edit(self, before_message,after_message:discord.Message):
+        if after_message.content.startswith("EN "):
+            content = translator.translate_text(after_message.content[3:],target_lang="EN-US")
+            webhook = await has_webhook(after_message.channel,after_message.author)
+            await after_message.delete()
+            await webhook.send(content=f"*{after_message.content[3:]}*\n\n{content}")
+            logger.info(f"{after_message.author.display_name} a traduit un message en anglais dans {after_message.channel.name}")
+        if after_message.content.startswith("FR "):
+            content = translator.translate_text(after_message.content[3:],target_lang="FR")
+            webhook = await has_webhook(after_message.channel,after_message.author)
+            await after_message.delete()
+            await webhook.send(content=f"*{after_message.content[3:]}*\n\n{content}")
+            logger.info(f"{after_message.author.display_name} a traduit un message en francais dans {after_message.channel.name}")
+        if after_message.content.startswith("DE "):
+            content = translator.translate_text(after_message.content[3:],target_lang="DE")
+            webhook = await has_webhook(after_message.channel,after_message.author)
+            await after_message.delete()
+            await webhook.send(content=f"*{after_message.content[3:]}*\n\n{content}")
+            logger.info(f"{after_message.author.display_name} a traduit un message en allemand dans {after_message.channel.name}")
+        if after_message.content.startswith("SP ") or after_message.content.startswith("ES "):
+            content = translator.translate_text(after_message.content[3:],target_lang="ES")
+            webhook = await has_webhook(after_message.channel,after_message.author)
+            await after_message.delete()
+            await webhook.send(content=f"*{after_message.content[3:]}*\n\n{content}")
+            logger.info(f"{after_message.author.display_name} a traduit un message en espagnol dans {after_message.channel.name}")
