@@ -101,10 +101,11 @@ class bot(commands.Bot):
         await self.add_cog(reboot(bot=self))
         await self.add_cog(raspberry_reboot(bot=self),guilds=[guild,discord.Object(id=916617095876337664)])
         # event
-        await self.add_cog(timeout(bot=self),guild=guild)
+        # await self.add_cog(timeout(bot=self),guild=guild)
         await self.add_cog(member_leave(bot=self),guild=guild)
         await self.add_cog(member_join(bot=self),guild=guild)
         await self.add_cog(on_message(bot=self),guild=guild)
+        await self.add_cog(on_edit(bot=self),guild=guild)
         await self.add_cog(test_lien(bot=self))
         await self.add_cog(logs(bot=self))
         # commandes de traduction
