@@ -13,12 +13,12 @@ from ..fonction import has_webhook
 
 translator = deepl.Translator("b2f44de3-fa00-9598-36ba-effea8104e2b:fx") 
 
-class on_edit(commands.Cog): 
+class on_message_edit(commands.Cog): 
     def __init__(self,bot:commands.Bot) -> None: 
         self.bot = bot 
 
-    @commands.Cog.listener(name="on_edit")
-    async def on_edit(self, message:discord.Message):
+    @commands.Cog.listener(name="on_message_edit")
+    async def on_message_edit(self, message:discord.Message):
         if message.content.startswith("EN "):
             content = translator.translate_text(message.content[3:],target_lang="EN-US")
             webhook = await has_webhook(message.channel,message.author)

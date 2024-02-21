@@ -23,7 +23,7 @@ from Cogs.bot.raspberry_reboot import raspberry_reboot
 
 from Cogs.event.on_timeout import timeout
 from Cogs.event.on_message import on_message
-from Cogs.event.on_edit import on_edit
+from Cogs.event.on_edit import on_message_edit
 from Cogs.event.test_lien import test_lien
 
 from Cogs.traduction.trad_fr import trad_fr
